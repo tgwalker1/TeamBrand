@@ -32,6 +32,8 @@
 #include "Events.h"
 #include "LED1.h"
 #include "LEDpin1.h"
+#include "BitIoLdd1.h"
+#include "WAIT1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -49,7 +51,12 @@ int main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-
+  LED1_Init();
+  for (;;)
+  {
+	 LED1_Neg();
+	 WAIT1_WaitOSms(1000);
+  }
   /* Write your code here */
   /* For example: for(;;) { } */
 

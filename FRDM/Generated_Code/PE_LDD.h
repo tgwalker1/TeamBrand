@@ -5,7 +5,7 @@
 **     Processor   : MKL25Z128VLK4
 **     Version     : Component 01.025, Driver 01.04, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2014-02-24, 11:50, # CodeGen: 1
+**     Date/Time   : 2014-02-24, 15:16, # CodeGen: 4
 **     Abstract    :
 **
 **     Settings    :
@@ -37,6 +37,8 @@
 #include "PE_Const.h"
 #include "LED1.h"
 #include "LEDpin1.h"
+#include "BitIoLdd1.h"
+#include "WAIT1.h"
 
 
 /*

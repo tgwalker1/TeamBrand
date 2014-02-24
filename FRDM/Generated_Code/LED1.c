@@ -6,7 +6,7 @@
 **     Component   : LED
 **     Version     : Component 01.061, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2014-02-24, 11:50, # CodeGen: 1
+**     Date/Time   : 2014-02-24, 15:09, # CodeGen: 2
 **     Abstract    :
 **          This component implements a universal driver for a single LED.
 **     Settings    :
@@ -14,7 +14,7 @@
 **          Turned On with initialization                  : no
 **          HW Interface                                   : 
 **            On/Off                                       : Enabled
-**              Pin                                        : genericBitIO
+**              Pin                                        : LEDpin
 **            PWM                                          : Disabled
 **            High Value means ON                          : no
 **          Shell                                          : Disabled

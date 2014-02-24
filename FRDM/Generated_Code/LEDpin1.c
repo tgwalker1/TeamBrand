@@ -3,36 +3,58 @@
 **     Filename    : LEDpin1.c
 **     Project     : ProcessorExpert
 **     Processor   : MKL25Z128VLK4
-**     Component   : GenericBitIO
-**     Version     : Component 01.065, Driver 01.00, CPU db: 3.00.000
+**     Component   : BitIO
+**     Version     : Component 02.086, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2014-02-24, 11:50, # CodeGen: 1
+**     Date/Time   : 2014-02-24, 15:09, # CodeGen: 2
 **     Abstract    :
-**
+**         This component "BitIO" implements an one-bit input/output.
+**         It uses one bit/pin of a port.
+**         Note: This component is set to work in Output direction only.
+**         Methods of this component are mostly implemented as a macros
+**         (if supported by target language and compiler).
 **     Settings    :
+**         Used pin                    :
+**             ----------------------------------------------------
+**                Number (on package)  |    Name
+**             ----------------------------------------------------
+**                       74            |  ADC0_SE5b/PTD1/SPI0_SCK/TPM0_CH1
+**             ----------------------------------------------------
 **
+**         Port name                   : PTD
+**
+**         Bit number (in port)        : 1
+**         Bit mask of the port        : 0x0002
+**
+**         Initial direction           : Output (direction cannot be changed)
+**         Initial output value        : 0
+**         Initial pull option         : off
+**
+**         Port data register          : GPIOD_PDOR [0x400FF0C0]
+**         Port control register       : GPIOD_PDDR [0x400FF0D4]
+**
+**         Optimization for            : speed
 **     Contents    :
-**         GetDir - bool LEDpin1_GetDir(void);
 **         GetVal - bool LEDpin1_GetVal(void);
-**         PutVal - void LEDpin1_PutVal(bool Val);
 **         ClrVal - void LEDpin1_ClrVal(void);
 **         SetVal - void LEDpin1_SetVal(void);
 **         NegVal - void LEDpin1_NegVal(void);
-**         Init   - void LEDpin1_Init(void);
 **
-**     License : Open Source (LGPL)
-**     Copyright : (c) Copyright Erich Styger, 2011, all rights reserved.
-**     This an open source software implementing a generic Bit I/O driver using Processor Expert.
-**     This is a free software and is opened for education, research and commercial developments under license policy of following terms:
-**     * This is a free software and there is NO WARRANTY.
-**     * No restriction on use. You can use, modify and redistribute it for personal, non-profit or commercial product UNDER YOUR RESPONSIBILITY.
-**     * Redistributions of source code must retain the above copyright notice.
+**     Copyright : 1997 - 2013 Freescale Semiconductor, Inc. All Rights Reserved.
+**     SOURCE DISTRIBUTION PERMISSIBLE as directed in End User License Agreement.
+**     
+**     http      : www.freescale.com
+**     mail      : support@freescale.com
 ** ###################################################################*/
 /*!
 ** @file LEDpin1.c
 ** @version 01.00
 ** @brief
-**
+**         This component "BitIO" implements an one-bit input/output.
+**         It uses one bit/pin of a port.
+**         Note: This component is set to work in Output direction only.
+**         Methods of this component are mostly implemented as a macros
+**         (if supported by target language and compiler).
 */         
 /*!
 **  @addtogroup LEDpin1_module LEDpin1 module documentation
@@ -43,119 +65,83 @@
 
 #include "LEDpin1.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
+
 /*
 ** ===================================================================
-**     Method      :  LEDpin1_GetDir (component GenericBitIO)
+**     Method      :  LEDpin1_GetVal (component BitIO)
 **     Description :
-**         Return the direction of the pin (input/output)
+**         This method returns an input value.
+**           a) direction = Input  : reads the input value from the
+**                                   pin and returns it
+**           b) direction = Output : returns the last written value
+**         Note: This component is set to work in Output direction only.
 **     Parameters  : None
 **     Returns     :
-**         ---             - FALSE if port is input, TRUE if port is
-**                           output
+**         ---             - Input value. Possible values:
+**                           FALSE - logical "0" (Low level)
+**                           TRUE - logical "1" (High level)
+
 ** ===================================================================
-*/
-/* This method is implemented as macro in header file LEDpin1.h
-bool LEDpin1_GetDir(void)
-{
-}
 */
 /*
-** ===================================================================
-**     Method      :  LEDpin1_GetVal (component GenericBitIO)
-**     Description :
-**         Returns the pin value
-**     Parameters  : None
-**     Returns     :
-**         ---             - Returns the value of the pin:
-**                           FALSE/logical level '0' or TRUE/logical
-**                           level '1'
-** ===================================================================
-*/
-/* This method is implemented as macro in header file LEDpin1.h
 bool LEDpin1_GetVal(void)
-{
-}
+
+**  This method is implemented as a macro. See LEDpin1.h file.  **
 */
 
 /*
 ** ===================================================================
-**     Method      :  LEDpin1_PutVal (component GenericBitIO)
+**     Method      :  LEDpin1_ClrVal (component BitIO)
 **     Description :
-**         Sets the pin value
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         Val             - Value to set. FALSE/logical '0' or
-**                           TRUE/logical '1'
-**     Returns     : Nothing
-** ===================================================================
-*/
-/* This method is implemented as macro in header file LEDpin1.h
-void LEDpin1_PutVal(bool Val)
-{
-}
-*/
-
-/*
-** ===================================================================
-**     Method      :  LEDpin1_ClrVal (component GenericBitIO)
-**     Description :
-**         Clears the pin value (sets it to a low level)
+**         This method clears (sets to zero) the output value.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
 */
-/* This method is implemented as macro in header file LEDpin1.h
+/*
 void LEDpin1_ClrVal(void)
-{
-}
+
+**  This method is implemented as a macro. See LEDpin1.h file.  **
 */
 
 /*
 ** ===================================================================
-**     Method      :  LEDpin1_SetVal (component GenericBitIO)
+**     Method      :  LEDpin1_SetVal (component BitIO)
 **     Description :
-**         Sets the pin value to a high value.
+**         This method sets (sets to one) the output value.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
 */
-/* This method is implemented as macro in header file LEDpin1.h
+/*
 void LEDpin1_SetVal(void)
-{
-}
+
+**  This method is implemented as a macro. See LEDpin1.h file.  **
 */
 
 /*
 ** ===================================================================
-**     Method      :  LEDpin1_NegVal (component GenericBitIO)
+**     Method      :  LEDpin1_NegVal (component BitIO)
 **     Description :
-**         Toggles/negates the pin value
+**         This method negates (inverts) the output value.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
 */
-/* This method is implemented as macro in header file LEDpin1.h
+/*
 void LEDpin1_NegVal(void)
-{
-}
-*/
 
-/*
-** ===================================================================
-**     Method      :  LEDpin1_Init (component GenericBitIO)
-**     Description :
-**         Initializes the driver
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
+**  This method is implemented as a macro. See LEDpin1.h file.  **
 */
-void LEDpin1_Init(void)
-{
-   LEDpin1_ClrVal(); /* clear bit to set data to 0 */
-   PTADD_PTADD0 = 1; /* set bit for output mode */
-}
 
 /* END LEDpin1. */
+
+#ifdef __cplusplus
+}  /* extern "C" */
+#endif 
 
 /*!
 ** @}
