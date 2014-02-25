@@ -4,9 +4,9 @@
 **     Project     : ProcessorExpert
 **     Processor   : MKL25Z128VLK4
 **     Component   : LED
-**     Version     : Component 01.061, Driver 01.00, CPU db: 3.00.000
+**     Version     : Component 01.062, Driver 01.00, CPU db: 3.00.000
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2014-02-24, 15:09, # CodeGen: 2
+**     Date/Time   : 2014-02-25, 10:13, # CodeGen: 5
 **     Abstract    :
 **          This component implements a universal driver for a single LED.
 **     Settings    :

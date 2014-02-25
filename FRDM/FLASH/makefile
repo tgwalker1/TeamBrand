@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 12
+#Progress monitor hint: 14
 first : all
 -include ../makefile.init
 
@@ -14,6 +14,7 @@ RM := "$(GNU_Make_Install_DirEnv)/rm" -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include Sources/source/subdir.mk
 -include Sources/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
 -include Generated_Code/subdir.mk
@@ -59,7 +60,7 @@ all: warning-messages explicit-dependencies FRDM.elf secondary-outputs
 # Tool invocations
 FRDM.elf: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/ProcessorExpert.ld
 	@echo 'Building target: $@'
-	@echo 'Executing target #13 $@'
+	@echo 'Executing target #15 $@'
 	@echo 'Invoking: ARM Ltd Windows GCC C Linker'
 	"$(ARMSourceryDirEnv)/arm-none-eabi-gcc"  $(USER_OBJS_QUOTED) $(LIBS_QUOTED) @"FRDM.args" -o"FRDM.elf"
 	@echo 'Finished building target: $@'

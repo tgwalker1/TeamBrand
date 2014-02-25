@@ -359,7 +359,7 @@ PE_DEBUGHALT();
       <Component_name v="LED1" />
       <Turned_On_with_initialization v="no" />
       <group name="HW Interface">
-        <High_pin_value_means_ON v="no" />
+        <Anode_on_port_side__HIGH_is_ON v="no" />
         <boolgroup name="On/Off" v="Enabled">
           <inhrbean type="BitIO">
             <Enabled v="Y" />

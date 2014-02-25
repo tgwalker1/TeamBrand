@@ -6,7 +6,7 @@
 **     Component   : PE_Types
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2014-02-24, 15:09, # CodeGen: 2
+**     Date/Time   : 2014-02-25, 10:13, # CodeGen: 5
 **     Abstract    :
 **         PE_Types.h - contains definitions of basic types,
 **         register access macros and hardware specific macros
@@ -53,7 +53,9 @@
 
 /* PE types definition */
 #ifndef __cplusplus
+  #ifndef bool 
 typedef unsigned char           bool;
+  #endif
 #endif
 typedef unsigned char           byte;
 typedef unsigned short          word;
