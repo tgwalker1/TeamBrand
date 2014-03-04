@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 6
+#Progress monitor hint: 18
 first : all
 -include ../makefile.init
 
@@ -14,6 +14,7 @@ RM := "$(GNU_Make_Install_DirEnv)/rm" -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include Sources/source/subdir.mk
 -include Sources/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
 -include Project_Settings/Linker_Files/subdir.mk
@@ -91,14 +92,14 @@ endif
 # Tool invocations
 SRB.abs: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/ProcessorExpert.prm
 	@echo 'Building target: $@'
-	@echo 'Executing target #7 $@'
+	@echo 'Executing target #19 $@'
 	@echo 'Invoking: S08 Linker'
 	"$(HC08ToolsEnv)/linker" -ArgFile"SRB.args" -O"SRB.abs"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 SRB.abs.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #8 $@'
+	@echo 'Executing target #20 $@'
 	@echo 'Invoking: S08 Burner'
 	"$(HC08ToolsEnv)/burner" -ArgFile"SRB.abs.args" -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'

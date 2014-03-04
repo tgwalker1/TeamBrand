@@ -5,7 +5,7 @@
 **     Processor   : MC13213
 **     Version     : Component 01.065, Driver 01.40, CPU db: 2.87.133
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-02-17, 13:38, # CodeGen: 0
+**     Date/Time   : 2014-03-04, 11:28, # CodeGen: 4
 **     Abstract    :
 **         This component "MC13214" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -34,6 +34,16 @@
 
 
 #include "Cpu.h"
+#include "LED1.h"
+#include "LEDpin5.h"
+#include "LED2.h"
+#include "LEDpin1.h"
+#include "LED3.h"
+#include "LEDpin2.h"
+#include "LED4.h"
+#include "LEDpin3.h"
+#include "LED5.h"
+#include "LEDpin4.h"
 
 /*lint -save  -e950 Disable MISRA rule (1.1) checking. */
 static void (* near const _vect[])(void) @0xFFCC = { /* Interrupt vector table */

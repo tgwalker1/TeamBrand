@@ -22,18 +22,18 @@ Vectors_c.obj                           Model: SMALL,         Lang: ANSI-C
 STARTUP SECTION
 ---------------------------------------------------------------------------------------------
 Entry point: 0x1837 (_EntryPoint)
-_startupData is allocated at 0x187C and uses 6 Bytes
+_startupData is allocated at 0x189E and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0xA0     1
-  _Copy    *toCopyDownBeg 0x1913
+  _Copy    *toCopyDownBeg 0x1935
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.text                            137     R     0x188A     0x1912   ROM
+.text                            137     R     0x18AC     0x1934   ROM
 .abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg0
 .abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg1
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg2
@@ -145,14 +145,14 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_1806                  2   N/I     0x1806     0x1807   .absSeg108
 .abs_section_1814                  2   N/I     0x1814     0x1815   .absSeg109
 .abs_section_ffcc                 52     R     0xFFCC     0xFFFF   .absSeg110
-.startData                        14     R     0x187C     0x1889   ROM
-.init                             80     R     0x182C     0x187B   ROM
+.startData                        14     R     0x189E     0x18AB   ROM
+.init                            114     R     0x182C     0x189D   ROM
 .common                            1   R/W       0xA0       0xA0   RAM
 .stack                           128   R/W       0xA1      0x120   RAM
-.copy                              2     R     0x1913     0x1914   ROM
+.copy                              2     R     0x1935     0x1936   ROM
 
 Summary of section sizes per section type:
-READ_ONLY (R):         11F (dec:      287)
+READ_ONLY (R):         141 (dec:      321)
 READ_WRITE (R/W):       81 (dec:      129)
 NO_INIT (N/I):          7E (dec:      126)
 
@@ -167,15 +167,15 @@ OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 MODULE:                 -- ProcessorExpert_c.obj --
 - PROCEDURES:
-     main                                      188A       5       5       1   .text       
+     main                                      18AC       5       5       1   .text       
 - VARIABLES:
 MODULE:                 -- start08_c.obj --
 - PROCEDURES:
-     loadByte                                  188F       E      14       5   .text       
-     Init                                      189D      6D     109       1   .text       
-     _Startup                                  190A       9       9       1   .text       
+     loadByte                                  18B1       E      14       5   .text       
+     Init                                      18BF      6D     109       1   .text       
+     _Startup                                  192C       9       9       1   .text       
 - VARIABLES:
-     _startupData                              187C       6       6       4   .startData  
+     _startupData                              189E       6       6       4   .startData  
 - LABELS:
      __SEG_END_SSTACK                           121       0       0       1               
 MODULE:                 -- Cpu_c.obj --
@@ -183,7 +183,7 @@ MODULE:                 -- Cpu_c.obj --
      Cpu_VicgInterrupt                         182C       7       7       1   .init       
      Cpu_Interrupt                             1833       4       4      24   .init       
      _EntryPoint                               1837      27      39       1   .init       
-     PE_low_level_init                         185E      1E      30       1   .init       
+     PE_low_level_init                         185E      40      64       1   .init       
 - VARIABLES:
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
@@ -199,14 +199,14 @@ MODULE:                 -- IO_Map_c.obj --
      _PTBPE                                       5       1       1       0   .abs_section_5
      _PTBSE                                       6       1       1       1   .abs_section_6
      _PTBDD                                       7       1       1       0   .abs_section_7
-     _PTCD                                        8       1       1       0   .abs_section_8
-     _PTCPE                                       9       1       1       0   .abs_section_9
+     _PTCD                                        8       1       1       2   .abs_section_8
+     _PTCPE                                       9       1       1       1   .abs_section_9
      _PTCSE                                       A       1       1       1   .abs_section_a
-     _PTCDD                                       B       1       1       0   .abs_section_b
-     _PTDD                                        C       1       1       0   .abs_section_c
-     _PTDPE                                       D       1       1       0   .abs_section_d
+     _PTCDD                                       B       1       1       1   .abs_section_b
+     _PTDD                                        C       1       1       6   .abs_section_c
+     _PTDPE                                       D       1       1       2   .abs_section_d
      _PTDSE                                       E       1       1       2   .abs_section_e
-     _PTDDD                                       F       1       1       0   .abs_section_f
+     _PTDDD                                       F       1       1       2   .abs_section_f
      _PTED                                       10       1       1       0   .abs_section_10
      _PTEPE                                      11       1       1       0   .abs_section_11
      _PTESE                                      12       1       1       2   .abs_section_12
@@ -310,7 +310,7 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   ProcessorExpert_c.obj                        0      5      0
   start08_c.obj                                0    132      0
-  Cpu_c.obj                                    1     80      2
+  Cpu_c.obj                                    1    114      2
   IO_Map_c.obj                               126      0      0
   Vectors_c.obj                                0      0     52
   other                                      128     14      2
@@ -559,14 +559,14 @@ OBJECT LIST SORTED BY ADDRESS
      _PTBPE                                       5       1       1       0   .abs_section_5
      _PTBSE                                       6       1       1       1   .abs_section_6
      _PTBDD                                       7       1       1       0   .abs_section_7
-     _PTCD                                        8       1       1       0   .abs_section_8
-     _PTCPE                                       9       1       1       0   .abs_section_9
+     _PTCD                                        8       1       1       2   .abs_section_8
+     _PTCPE                                       9       1       1       1   .abs_section_9
      _PTCSE                                       A       1       1       1   .abs_section_a
-     _PTCDD                                       B       1       1       0   .abs_section_b
-     _PTDD                                        C       1       1       0   .abs_section_c
-     _PTDPE                                       D       1       1       0   .abs_section_d
+     _PTCDD                                       B       1       1       1   .abs_section_b
+     _PTDD                                        C       1       1       6   .abs_section_c
+     _PTDPE                                       D       1       1       2   .abs_section_d
      _PTDSE                                       E       1       1       2   .abs_section_e
-     _PTDDD                                       F       1       1       0   .abs_section_f
+     _PTDDD                                       F       1       1       2   .abs_section_f
      _PTED                                       10       1       1       0   .abs_section_10
      _PTEPE                                      11       1       1       0   .abs_section_11
      _PTESE                                      12       1       1       2   .abs_section_12
@@ -663,11 +663,11 @@ OBJECT LIST SORTED BY ADDRESS
      Cpu_VicgInterrupt                         182C       7       7       1   .init       
      Cpu_Interrupt                             1833       4       4      24   .init       
      _EntryPoint                               1837      27      39       1   .init       
-     PE_low_level_init                         185E      1E      30       1   .init       
-     main                                      188A       5       5       1   .text       
-     loadByte                                  188F       E      14       5   .text       
-     Init                                      189D      6D     109       1   .text       
-     _Startup                                  190A       9       9       1   .text       
+     PE_low_level_init                         185E      40      64       1   .init       
+     main                                      18AC       5       5       1   .text       
+     loadByte                                  18B1       E      14       5   .text       
+     Init                                      18BF      6D     109       1   .text       
+     _Startup                                  192C       9       9       1   .text       
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
      _vect                                     FFCC      34      52       0   .abs_section_ffcc
@@ -682,7 +682,7 @@ Cpu_c.obj:
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x1913 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x1935 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -692,8 +692,8 @@ OBJECT-DEPENDENCIES SECTION
 Cpu_VicgInterrupt         USES _ICGS1 
 _EntryPoint               USES _SOPT _SPMSC1 _SPMSC2 _ICGC1 _ICGFLT _ICGC2 
                                 _ICGTRM _Startup 
-PE_low_level_init         USES _PTASE _PTBSE _PTCSE _PTDSE _PTESE _PTGSE 
-                                CCR_lock 
+PE_low_level_init         USES _PTDD _PTDPE _PTDDD _PTCD _PTCPE _PTCDD _PTASE 
+                                _PTBSE _PTCSE _PTDSE _PTESE _PTGSE CCR_lock 
 main                      USES PE_low_level_init 
 Init                      USES _startupData loadByte 
 _Startup                  USES __SEG_END_SSTACK Init main 
@@ -732,6 +732,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 287
+Number of blocks to be downloaded: 7
+Total size of all blocks to be downloaded: 321
 

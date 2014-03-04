@@ -89,6 +89,7 @@ OBJS_OS_FORMAT :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Sources/source \
 Sources \
 Project_Settings/Startup_Code \
 Project_Settings/Linker_Files \

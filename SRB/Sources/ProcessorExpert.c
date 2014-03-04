@@ -30,6 +30,16 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
+#include "LED1.h"
+#include "LEDpin5.h"
+#include "LED2.h"
+#include "LEDpin1.h"
+#include "LED3.h"
+#include "LEDpin2.h"
+#include "LED4.h"
+#include "LEDpin3.h"
+#include "LED5.h"
+#include "LEDpin4.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

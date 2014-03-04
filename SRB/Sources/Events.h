@@ -34,6 +34,16 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "LED1.h"
+#include "LEDpin5.h"
+#include "LED2.h"
+#include "LEDpin1.h"
+#include "LED3.h"
+#include "LEDpin2.h"
+#include "LED4.h"
+#include "LEDpin3.h"
+#include "LED5.h"
+#include "LEDpin4.h"
 
 
 /* END Events */

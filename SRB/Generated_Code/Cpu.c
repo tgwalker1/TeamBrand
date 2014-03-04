@@ -7,7 +7,7 @@
 **     Version     : Component 01.065, Driver 01.40, CPU db: 2.87.133
 **     Datasheet   : MC1321xRM Rev. 1.1 10/2006
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-02-17, 13:38, # CodeGen: 0
+**     Date/Time   : 2014-03-04, 11:28, # CodeGen: 4
 **     Abstract    :
 **         This component "MC13214" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -41,6 +41,16 @@
 
 #pragma MESSAGE DISABLE C4002 /* WARNING C4002: Result not used is ignored */
 
+#include "LED1.h"
+#include "LEDpin5.h"
+#include "LED2.h"
+#include "LEDpin1.h"
+#include "LED3.h"
+#include "LEDpin2.h"
+#include "LED4.h"
+#include "LEDpin3.h"
+#include "LED5.h"
+#include "LEDpin4.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -182,6 +192,18 @@ void PE_low_level_init(void)
     PEX_RTOS_INIT();                   /* Initialization of the selected RTOS. Macro is defined by the RTOS component. */
   #endif
   /* Common initialization of the CPU registers */
+  /* PTDD: PTDD7=0,PTDD6=0,PTDD5=0,PTDD4=0 */
+  clrReg8Bits(PTDD, 0xF0U);             
+  /* PTDPE: PTDPE7=0,PTDPE6=0,PTDPE5=0,PTDPE4=0 */
+  clrReg8Bits(PTDPE, 0xF0U);            
+  /* PTDDD: PTDDD7=1,PTDDD6=1,PTDDD5=1,PTDDD4=1 */
+  setReg8Bits(PTDDD, 0xF0U);            
+  /* PTCD: PTCD4=0 */
+  clrReg8Bits(PTCD, 0x10U);             
+  /* PTCPE: PTCPE4=0 */
+  clrReg8Bits(PTCPE, 0x10U);            
+  /* PTCDD: PTCDD4=1 */
+  setReg8Bits(PTCDD, 0x10U);            
   /* PTASE: PTASE7=0,PTASE6=0,PTASE5=0,PTASE4=0,PTASE3=0,PTASE2=0,PTASE1=0,PTASE0=0 */
   setReg8(PTASE, 0x00U);                
   /* PTBSE: PTBSE7=0,PTBSE6=0,PTBSE5=0,PTBSE4=0,PTBSE3=0,PTBSE2=0,PTBSE1=0,PTBSE0=0 */
@@ -195,6 +217,21 @@ void PE_low_level_init(void)
   /* PTGSE: PTGSE2=0,PTGSE1=0,PTGSE0=0 */
   clrReg8Bits(PTGSE, 0x07U);            
   /* ### Shared modules init code ... */
+  /* ### BitIO "LEDpin5" init code ... */
+  /* ### LED "LED1" init code ... */
+  LED1_Init(); /* initialize LED driver */
+  /* ### BitIO "LEDpin1" init code ... */
+  /* ### LED "LED2" init code ... */
+  LED2_Init(); /* initialize LED driver */
+  /* ### BitIO "LEDpin2" init code ... */
+  /* ### LED "LED3" init code ... */
+  LED3_Init(); /* initialize LED driver */
+  /* ### BitIO "LEDpin3" init code ... */
+  /* ### LED "LED4" init code ... */
+  LED4_Init(); /* initialize LED driver */
+  /* ### BitIO "LEDpin4" init code ... */
+  /* ### LED "LED5" init code ... */
+  LED5_Init(); /* initialize LED driver */
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }
