@@ -5,10 +5,13 @@
 -WmsgSd1100
 -WmsgSd1912 
 -Add("$(ProjDirPath)/FLASH/Sources/source/Application_c.obj"
+"$(ProjDirPath)/FLASH/Sources/source/Event_c.obj"
+"$(ProjDirPath)/FLASH/Sources/source/LED_c.obj"
 "$(ProjDirPath)/FLASH/Sources/source/Platform_c.obj"
 "$(ProjDirPath)/FLASH/Sources/Events_c.obj"
 "$(ProjDirPath)/FLASH/Sources/ProcessorExpert_c.obj"
 "$(ProjDirPath)/FLASH/Project_Settings/Startup_Code/start08_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/CS1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Cpu_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/IO_Map_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/LED1_c.obj"

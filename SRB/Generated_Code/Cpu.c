@@ -7,7 +7,7 @@
 **     Version     : Component 01.065, Driver 01.40, CPU db: 2.87.133
 **     Datasheet   : MC1321xRM Rev. 1.1 10/2006
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-03-04, 11:28, # CodeGen: 4
+**     Date/Time   : 2014-03-10, 11:49, # CodeGen: 7
 **     Abstract    :
 **         This component "MC13214" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -51,6 +51,7 @@
 #include "LEDpin3.h"
 #include "LED5.h"
 #include "LEDpin4.h"
+#include "CS1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -232,6 +233,7 @@ void PE_low_level_init(void)
   /* ### BitIO "LEDpin4" init code ... */
   /* ### LED "LED5" init code ... */
   LED5_Init(); /* initialize LED driver */
+  /* ### CriticalSection "CS1" init code ... */
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }

@@ -12,11 +12,14 @@ Generated_Code/Vectors.o: ../Generated_Code/Vectors.c \
  C:/Freescale/CW\ MCU\ v10.5/MCU/ARM_GCC_Support/ewl/EWL_C/include/limits_api.h \
  C:/Freescale/CW\ MCU\ v10.5/MCU/ARM_GCC_Support/ewl/EWL_C/include/ewl_lib_ext1.h \
  ../Generated_Code/PE_Error.h ../Generated_Code/PE_Const.h \
- ../Generated_Code/IO_Map.h ../Generated_Code/LED1.h \
+ ../Generated_Code/IO_Map.h ../Generated_Code/WAIT1.h \
+ ../Generated_Code/CS1.h ../Generated_Code/LED1.h \
  ../Generated_Code/LEDpin1.h ../Generated_Code/BitIoLdd1.h \
  C:/Freescale/CW\ MCU\ v10.5/MCU/ProcessorExpert/lib/Kinetis/pdd/inc/GPIO_PDD.h \
  C:/Freescale/CW\ MCU\ v10.5/MCU/ProcessorExpert/lib/Kinetis/pdd/inc/PDD_Types.h \
- ../Generated_Code/WAIT1.h \
+ ../Generated_Code/LED2.h ../Generated_Code/LEDpin2.h \
+ ../Generated_Code/BitIoLdd2.h ../Generated_Code/LED3.h \
+ ../Generated_Code/LEDpin3.h ../Generated_Code/BitIoLdd3.h \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Sources/Events.h \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/PE_Types.h \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/PE_Error.h \
@@ -25,7 +28,14 @@ Generated_Code/Vectors.o: ../Generated_Code/Vectors.c \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LED1.h \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LEDpin1.h \
  C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd1.h \
- C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/WAIT1.h
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LED2.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LEDpin2.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd2.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LED3.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LEDpin3.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd3.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/WAIT1.h \
+ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/CS1.h
 
 C:/Freescale/CW\ MCU\ v10.5/MCU/ARM_GCC_Support/ewl/EWL_C/include/lib_ewl.prefix:
 
@@ -59,6 +69,10 @@ C:/Freescale/CW\ MCU\ v10.5/MCU/ARM_GCC_Support/ewl/EWL_C/include/ewl_lib_ext1.h
 
 ../Generated_Code/IO_Map.h:
 
+../Generated_Code/WAIT1.h:
+
+../Generated_Code/CS1.h:
+
 ../Generated_Code/LED1.h:
 
 ../Generated_Code/LEDpin1.h:
@@ -69,7 +83,17 @@ C:/Freescale/CW\ MCU\ v10.5/MCU/ProcessorExpert/lib/Kinetis/pdd/inc/GPIO_PDD.h:
 
 C:/Freescale/CW\ MCU\ v10.5/MCU/ProcessorExpert/lib/Kinetis/pdd/inc/PDD_Types.h:
 
-../Generated_Code/WAIT1.h:
+../Generated_Code/LED2.h:
+
+../Generated_Code/LEDpin2.h:
+
+../Generated_Code/BitIoLdd2.h:
+
+../Generated_Code/LED3.h:
+
+../Generated_Code/LEDpin3.h:
+
+../Generated_Code/BitIoLdd3.h:
 
 C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Sources/Events.h:
 
@@ -87,4 +111,18 @@ C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/
 
 C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd1.h:
 
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LED2.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LEDpin2.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd2.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LED3.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/LEDpin3.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/BitIoLdd3.h:
+
 C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/WAIT1.h:
+
+C:/Users/Reto/Documents/Fachhochschule/Elektrotechnik/Infotronik/TeamBrand/FRDM/Generated_Code/CS1.h:

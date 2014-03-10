@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 18
+#Progress monitor hint: 21
 first : all
 -include ../makefile.init
 
@@ -92,14 +92,14 @@ endif
 # Tool invocations
 SRB.abs: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/ProcessorExpert.prm
 	@echo 'Building target: $@'
-	@echo 'Executing target #19 $@'
+	@echo 'Executing target #22 $@'
 	@echo 'Invoking: S08 Linker'
 	"$(HC08ToolsEnv)/linker" -ArgFile"SRB.args" -O"SRB.abs"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 SRB.abs.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #20 $@'
+	@echo 'Executing target #23 $@'
 	@echo 'Invoking: S08 Burner'
 	"$(HC08ToolsEnv)/burner" -ArgFile"SRB.abs.args" -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'

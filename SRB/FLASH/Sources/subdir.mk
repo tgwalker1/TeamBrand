@@ -37,7 +37,7 @@ OBJS_OS_FORMAT += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Events_c.obj: ../Sources/Events.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #3 $<'
+	@echo 'Executing target #5 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Sources/Events.args" -ObjN="Sources/Events_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -50,7 +50,7 @@ Sources/%.d: ../Sources/%.c
 
 Sources/ProcessorExpert_c.obj: ../Sources/ProcessorExpert.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #4 $<'
+	@echo 'Executing target #6 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Sources/ProcessorExpert.args" -ObjN="Sources/ProcessorExpert_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
