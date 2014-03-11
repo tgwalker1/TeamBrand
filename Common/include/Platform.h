@@ -21,10 +21,12 @@
   /*!< Macro is defined through compiler option for the FRDM board */
 
 /* here all the different 'enable' macros for the application are defined */
-#define PL_HAS_LED   (1)
+#define PL_HAS_LED            (1)
   /*!< Set to 1 if we have LEDs available, 0 otherwise */
 #define PL_HAS_EVENTS         (1)
   /*!< Set to 1 if we have the Event module implemented, 0 otherwise */
+#define PL_HAS_TIMERS         (1)
+  /*!< Set to 1 if we use Timers in our CPU, 0 otherwise */
 
 #if PL_IS_FRDM
   #define PL_NOF_LEDS 3

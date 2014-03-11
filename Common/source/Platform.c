@@ -14,6 +14,9 @@
 #if PL_HAS_EVENTS
   #include "Event.h"
 #endif
+#if PL_HAS_TIMERS
+  #include "Timer.h"
+#endif
 
 #if PL_HAS_LED
 static void PL_LedInit(void) {
@@ -65,6 +68,9 @@ void PL_Init(void) {
 #if PL_HAS_EVENTS
   EVNT_Init();
 #endif
+#if PL_HAS_TIMERS
+  TMR_Init();
+#endif
 }
 
 void PL_Deinit(void) {
@@ -73,5 +79,8 @@ void PL_Deinit(void) {
 #endif
 #if PL_HAS_LED
   PL_LedDeinit();
+#endif  
+#if PL_HAS_TIMERS
+  TMR_Deinit();
 #endif  
 }
