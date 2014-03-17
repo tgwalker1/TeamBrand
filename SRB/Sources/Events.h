@@ -46,6 +46,7 @@
 #include "LEDpin4.h"
 #include "CS1.h"
 #include "TI1.h"
+#include "WAIT1.h"
 
 
 void TI1_OnInterrupt(void);
