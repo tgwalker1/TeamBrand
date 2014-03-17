@@ -46,6 +46,8 @@
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
+#include "SW1.h"
+#include "BitIoLdd4.h"
 #include "WAIT1.h"
 #include "CS1.h"
 
