@@ -32,6 +32,7 @@
 #include "Events.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "Keys.h"
 
 /*
 ** ===================================================================
@@ -68,7 +69,7 @@ void TI1_OnInterrupt(void)
 */
 void KB1_OnInterrupt(void)
 {
-  /* Write your code here ... */
+  KEY_OnInterrupt();
 }
 
 /* END Events */
