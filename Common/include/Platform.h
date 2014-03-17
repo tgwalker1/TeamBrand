@@ -25,7 +25,7 @@
   /*!< Set to 1 if we have LEDs available, 0 otherwise */
 #define PL_HAS_EVENTS         (1)
   /*!< Set to 1 if we have the Event module implemented, 0 otherwise */
-#define PL_HAS_TIMER          (1)
+#define PL_HAS_TIMERS          (1)
   /*!< Set to 1 if we have the Timer module implemented, 0 otherwise */
 #define PL_HAS_LED_HEARTBEAT  (1)
   /*!< Set to 1 if we have a LED heartbeat, 0 otherwise */
