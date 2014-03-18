@@ -71,6 +71,10 @@ void PL_Init(void) {
 #if PL_HAS_TIMERS
   TMR_Init();
 #endif
+#if PL_HAS_TRIGGERS
+  TRG_Init();
+#endif
+  
 }
 
 void PL_Deinit(void) {
@@ -82,5 +86,8 @@ void PL_Deinit(void) {
 #endif  
 #if PL_HAS_TIMERS
   TMR_Deinit();
+#endif  
+#if PL_HAS_TIMERS
+  TRG_Deinit();
 #endif  
 }

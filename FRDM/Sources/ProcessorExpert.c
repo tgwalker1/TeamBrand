@@ -44,6 +44,8 @@
 #include "TU1.h"
 #include "SW1.h"
 #include "BitIoLdd4.h"
+#include "BUZ1.h"
+#include "BitIoLdd5.h"
 #include "WAIT1.h"
 #include "CS1.h"
 /* Including shared modules, which are used for whole project */

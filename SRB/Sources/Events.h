@@ -48,6 +48,7 @@
 #include "TI1.h"
 #include "WAIT1.h"
 #include "KB1.h"
+#include "BUZ1.h"
 
 
 void TI1_OnInterrupt(void);
