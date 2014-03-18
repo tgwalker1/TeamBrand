@@ -25,7 +25,7 @@ static void APP_EvntHandler(EVNT_Handle event) {
 #if PL_NOF_KEYS>=1
 		case EVNT_SW1_PRESSED:
 		LED1_Neg();
-		(void)BUZ_Beep(0,1000);
+		(void)BUZ_Beep(100,1000);
 		break;
 #endif
 #if PL_NOF_KEYS>=2

@@ -53,6 +53,7 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "Application.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
@@ -65,11 +66,10 @@ int main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-  LED1_Init();
+  
   for (;;)
   {
-	 LED1_Neg();
-	 WAIT1_WaitOSms(1000);
+	  APP_Run();
   }
   /* Write your code here */
   /* For example: for(;;) { } */

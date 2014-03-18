@@ -53,9 +53,9 @@
      /*!< We have 5 LED's on the SRB board */
   #define PL_NOF_KEYS       4
      /*!< Number of push buttons on the SRB board */
-  #define PL_BUZZER_IS_ON_OFF (1)
+  #define PL_BUZZER_IS_ON_OFF (0)
      /*!< Set to 1 if buzzer is using on-off signal */
-  #define PL_BUZZER_IS_SW_PWM (0)
+  #define PL_BUZZER_IS_SW_PWM (1)
      /*!< Set to 1 if buzzer needs a software PWM signal */
   #define PL_BUZZER_IS_HW_PWM (0)
      /*!< Set to 1 if buzzer uses a hardware PWM signal */
