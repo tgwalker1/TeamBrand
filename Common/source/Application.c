@@ -13,6 +13,7 @@
 #include "WAIT1.h"
 #include "LED.h"
 #include "Keys.h"
+#include "Buzzer.h"
 
 static void APP_EvntHandler(EVNT_Handle event) {
 	switch (event) {
@@ -24,6 +25,7 @@ static void APP_EvntHandler(EVNT_Handle event) {
 #if PL_NOF_KEYS>=1
 		case EVNT_SW1_PRESSED:
 		LED1_Neg();
+		(void)BUZ_Beep(0,1000);
 		break;
 #endif
 #if PL_NOF_KEYS>=2
