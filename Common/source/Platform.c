@@ -23,6 +23,15 @@
 #if PL_HAS_TRIGGER
   #include "Trigger.h"
 #endif
+#if PL_HAS_BUZZER
+  #include "Buzzer.h"
+#endif
+#if PL_HAS_DEBOUNCE
+  #include "Debounce.h"
+#endif
+#if PL_HAS_RTOS
+  #include "RTOS.h"
+#endif
 
 #if PL_HAS_LED
 static void PL_LedInit(void) {
@@ -82,9 +91,27 @@ void PL_Init(void) {
 #if PL_HAS_TRIGGER
   TRG_Init();
 #endif
+#if PL_HAS_BUZZER
+  BUZ_Init();
+#endif
+#if PL_HAS_DEBOUNCE
+  DBNC_Init();
+#endif
+#if PL_HAS_RTOS
+  RTOS_Init();
+#endif
 }
 
 void PL_Deinit(void) {
+#if PL_HAS_RTOS
+  RTOS_Deinit();
+#endif
+#if PL_HAS_DEBOUNCE
+  DBNC_Deinit();
+#endif
+#if PL_HAS_BUZZER
+  BUZ_Deinit();
+#endif
 #if PL_HAS_TRIGGER
   TRG_Deinit();
 #endif

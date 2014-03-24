@@ -27,24 +27,31 @@
   /*!< Set to 1 if we have the Event module implemented, 0 otherwise */
 #define PL_HAS_TIMER          (1)
   /*!< Set to 1 if we have the Timer module implemented, 0 otherwise */
-#define PL_HAS_LED_HEARTBEAT  (1)
+#define PL_HAS_LED_HEARTBEAT  (0)
   /*!< Set to 1 if we have a LED heartbeat, 0 otherwise */
 #define PL_HAS_KEYS           (1)
   /*!< Set to 1 if we have push buttons (keys) implemented, 0 otherwise */
 #define PL_HAS_KBI            (PL_IS_SRB)
   /*!< Set to 1 if we have use keyboard interrupt */
-#define PL_HAS_TRIGGER  1
-#define PL_HAS_BUZZER   1
-#define PL_HAS_DEBOUNCE 0
+#define PL_HAS_TRIGGER        (1)
+  /*!< Set to 1 if we have use trigger */
+#define PL_HAS_BUZZER         (1)
+  /*!< Set to 1 if we have a buzzer */
+#define PL_HAS_DEBOUNCE       (1)
+  /*!< Set to 1 if we have debounce the keys */
+#define PL_HAS_RTOS           (1)
+  /*!< If we are using an RTOS */
+#define PL_HAS_SHELL    0
+  /*!< Set to 1 if we have use a shell */
 
 #if PL_IS_FRDM
   #define PL_NOF_LEDS       3
      /*!< FRDM board has 3 LEDs (RGB) */
   #define PL_NOF_KEYS       1
      /*!< Number of push buttons on the SRB board */
-  #define PL_BUZZER_IS_ON_OFF (1)
+  #define PL_BUZZER_IS_ON_OFF (0)
      /*!< Set to 1 if buzzer is using on-off signal */
-  #define PL_BUZZER_IS_SW_PWM (0)
+  #define PL_BUZZER_IS_SW_PWM (1)
      /*!< Set to 1 if buzzer needs a software PWM signal */
   #define PL_BUZZER_IS_HW_PWM (0)
      /*!< Set to 1 if buzzer uses a hardware PWM signal */
@@ -53,9 +60,9 @@
      /*!< We have 5 LED's on the SRB board */
   #define PL_NOF_KEYS       4
      /*!< Number of push buttons on the SRB board */
-  #define PL_BUZZER_IS_ON_OFF (0)
+  #define PL_BUZZER_IS_ON_OFF (1)
      /*!< Set to 1 if buzzer is using on-off signal */
-  #define PL_BUZZER_IS_SW_PWM (1)
+  #define PL_BUZZER_IS_SW_PWM (0)
      /*!< Set to 1 if buzzer needs a software PWM signal */
   #define PL_BUZZER_IS_HW_PWM (0)
      /*!< Set to 1 if buzzer uses a hardware PWM signal */

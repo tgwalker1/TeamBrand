@@ -19,13 +19,24 @@ static void APP_EvntHandler(EVNT_Handle event) {
 	switch (event) {
 	case EVNT_INIT:
 		LED1_On();
-		WAIT1_Waitms(100);
+		WAIT1_Waitms(1000);
+		LED1_Off();
+		WAIT1_Waitms(1000);
+		LED1_On();
+		WAIT1_Waitms(1000);
+		LED1_Off();
+		WAIT1_Waitms(1000);
+		LED1_On();
+		WAIT1_Waitms(1000);
 		LED1_Off();
 		break;
 #if PL_NOF_KEYS>=1
 		case EVNT_SW1_PRESSED:
 		LED1_Neg();
+		LED2_Neg();
 		(void)BUZ_Beep(100,1000);
+		(void)BUZ_Beep(50,1000);
+		(void)BUZ_Beep(500,1000);
 		break;
 #endif
 #if PL_NOF_KEYS>=2
