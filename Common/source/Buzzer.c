@@ -37,7 +37,7 @@ static void BUZ_Toggle(void *dataPtr) {
     BUZ1_ClrVal(); /* turn buzzer off */
   } else {
     trgInfo->buzIterationCntr--;
-    (void)BUZ1_NegVal();
+    BUZ1_NegVal();
     (void)TRG_SetTrigger(TRG_BUZ_BEEP, trgInfo->buzPeriodTicks, BUZ_Toggle, trgInfo);
   }
 #else

@@ -9,9 +9,9 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-//#include "FreeRTOS.h"
+#include "FreeRTOS.h"
 
-#define TMR_TICK_MS  10 /*portTICK_RATE_MS */
+#define TMR_TICK_MS  portTICK_RATE_MS 
   /*!< we get called every x ms */
 
 /*! \brief Function called from timer interrupt every TMR_TICK_MS. */
