@@ -35,10 +35,27 @@
 #if PL_HAS_SHELL_QUEUE
   #include "ShellQueue.h"
 #endif
+#if PL_HAS_LINE_SENSOR
+  #include "Reflectance.h"
+#endif
+#if PL_HAS_MOTOR
+  #include "Motor.h"
+#endif
+#if PL_HAS_ACCEL
+  #include "Accel.h"
+  #include "MMA1.h"
+#endif
+#if PL_HAS_CONFIG_NVM
+  #include "NVM_Config.h"
+#endif
+#if PL_HAS_BUZZER
+  #include "Buzzer.h"
+#endif
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_HAS_SHELL_QUEUE
   /* \todo Implement using queues */
+  SQUEUE_SendString(msg);
 #else
   CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
 #endif
@@ -82,6 +99,21 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
 #endif
 #endif
+#if PL_HAS_LINE_SENSOR
+  REF_ParseCommand,
+#endif
+#if PL_HAS_MOTOR
+  MOT_ParseCommand,
+#endif
+#if PL_HAS_BUZZER
+  BUZ_ParseCommand,
+#endif
+#if PL_HAS_ACCEL
+  MMA1_ParseCommand,
+#endif
+#if PL_HAS_CONFIG_NVM
+  /* no parser yet */
+#endif
   NULL /* Sentinel */
 };
 
@@ -118,6 +150,14 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_HAS_SHELL_QUEUE
     {
       /*! \todo Handle shell queue */
+      unsigned char ch;
+
+      while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
+        ioLocal->stdOut(ch);
+#if PL_HAS_BLUETOOTH
+        BT_stdio.stdOut(ch); /* copy on Bluetooth */
+#endif
+      }
     }
 #endif
     FRTOS1_vTaskDelay(50/portTICK_RATE_MS);

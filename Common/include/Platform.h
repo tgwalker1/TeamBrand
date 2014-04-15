@@ -49,8 +49,18 @@
   /*!< If we are using an RTOS */
 #define PL_HAS_SHELL_QUEUE    (1)
   /*!< If we have a message queue for the shell */
+#define PL_HAS_LINE_SENSOR    (1 && PL_IS_FRDM)
+  /*!< If we are having a line sensor */
 
-#define PL_HAS_RTOS_TRACE     (0 && PL_HAS_RTOS && PL_IS_FRDM)
+#define PL_HAS_MOTOR          (1 && PL_IS_FRDM)
+  /*!< Set to one if having DC motor driver */
+#define PL_HAS_ACCEL          (1)
+  /*!< Set to one if having acceleration sensor */
+#define PL_HAS_CONFIG_NVM     (1)
+  /*!< Set to one if using non-volatile memory for configuration data */
+
+
+#define PL_HAS_RTOS_TRACE     (1 && PL_HAS_RTOS && PL_IS_FRDM)
   /*!< Set to one if using Percepio Trace */
 
 #if PL_IS_FRDM

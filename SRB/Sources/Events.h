@@ -5,7 +5,7 @@
 **     Component   : Events
 **     Version     : Driver 01.02
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2014-02-17, 13:38, # CodeGen: 0
+**     Date/Time   : 2014-02-17, 11:36, # CodeGen: 0
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
@@ -35,20 +35,32 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 #include "LED1.h"
-#include "LEDpin5.h"
-#include "LED2.h"
 #include "LEDpin1.h"
-#include "LED3.h"
+#include "LED2.h"
 #include "LEDpin2.h"
-#include "LED4.h"
+#include "LED3.h"
 #include "LEDpin3.h"
-#include "LED5.h"
+#include "LED4.h"
 #include "LEDpin4.h"
+#include "LED5.h"
+#include "LEDpin5.h"
 #include "CS1.h"
-#include "TI1.h"
 #include "WAIT1.h"
+#include "TI1.h"
 #include "KB1.h"
 #include "BUZ1.h"
+#include "FRTOS1.h"
+#include "Vswi.h"
+#include "TickCntr1.h"
+#include "UTIL1.h"
+#include "CLS1.h"
+#include "AS1.h"
+#include "AD1.h"
+#include "MMA1.h"
+#include "G11.h"
+#include "G21.h"
+#include "Sleep1.h"
+#include "IFsh1.h"
 
 
 void TI1_OnInterrupt(void);
@@ -77,6 +89,79 @@ void KB1_OnInterrupt(void);
 **         This event is called when the active signal edge/level
 **         occurs. This event is enabled only if <Interrupt
 **         service/event> property is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationStackOverflowHook(xTaskHandle pxTask, char *pcTaskName);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationStackOverflowHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         if enabled, this hook will be called in case of a stack
+**         overflow.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         pxTask          - Task handle
+**       * pcTaskName      - Pointer to task name
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationTickHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationTickHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called by the RTOS for every
+**         tick increment.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationIdleHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationIdleHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called when the RTOS is idle.
+**         This might be a good place to go into low power mode.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationMallocFailedHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationMallocFailedHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, the RTOS will call this hook in case memory
+**         allocation failed.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void RTOSTRC1_OnTraceWrap(void);
+/*
+** ===================================================================
+**     Event       :  RTOSTRC1_OnTraceWrap (module Events)
+**
+**     Component   :  RTOSTRC1 [PercepioTrace]
+**     Description :
+**         Called for trace ring buffer wrap around. This gives the
+**         application a chance to dump the trace buffer.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

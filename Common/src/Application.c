@@ -30,9 +30,9 @@
   #include "RTOSTRC1.h"
 #endif
 
-//BaseType_t APP_EnterTicklessIdle(void) {
-//  return pdTRUE;
-//}
+BaseType_t APP_EnterTicklessIdle(void) {
+  return pdTRUE;
+}
 
 static void APP_EvntHandler(EVNT_Handle event) {
   switch(event) { 
