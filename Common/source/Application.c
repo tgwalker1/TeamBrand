@@ -51,7 +51,7 @@ static void APP_EvntHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
     LED1_Neg();
 #if PL_HAS_BUZZER
-  (void)BUZ_Beep(300, 500);
+  (void)BUZ_Beep(600, 1000);
 #endif
     break;
 #endif
@@ -111,7 +111,6 @@ void APP_Run(void) {
     for(;;) {} /* failed! */
   }
 #endif
-  PL_Init();
   EVNT_SetEvent(EVNT_INIT);
 #if PL_HAS_RTOS
   if (FRTOS1_xTaskCreate(
@@ -130,5 +129,4 @@ void APP_Run(void) {
 #else
   APP_Loop();
 #endif
-  PL_Deinit();
 }

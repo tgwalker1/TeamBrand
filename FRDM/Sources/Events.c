@@ -71,6 +71,8 @@ void Cpu_OnNMIINT(void)
 */
 void TI1_OnInterrupt(void)
 {
+	TMR_OnInterrupt();
+
 	//EVNT_SetEvent(EVNT_LED_TOGGLE);
 }
 

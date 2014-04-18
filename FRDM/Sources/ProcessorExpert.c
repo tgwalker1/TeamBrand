@@ -50,12 +50,14 @@
 #include "FRTOS1.h"
 #include "UTIL1.h"
 #include "AS1.h"
+#include "Cpu.h"
 #include "ASerialLdd1.h"
 #include "CLS1.h"
 #include "BT1.h"
 #include "Serial1.h"
 #include "ASerialLdd2.h"
 #include "LED_IR.h"
+#include "FRTOS1.h"
 #include "LEDpin4.h"
 #include "BitIoLdd6.h"
 #include "RefCnt.h"
@@ -94,7 +96,7 @@ int main(void)
   
   for (;;)
   {
-	  APP_Run();
+	  PL_Start();
   }
   /* Write your code here */
   /* For example: for(;;) { } */
