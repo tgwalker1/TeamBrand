@@ -29,6 +29,9 @@
 #if PL_HAS_RTOS_TRACE
   #include "RTOSTRC1.h"
 #endif
+#if PL_HAS_MOTOR
+  #include "Motor.h"
+#endif
 
 //BaseType_t APP_EnterTicklessIdle(void) {
 //  return pdTRUE;
@@ -50,6 +53,10 @@ static void APP_EvntHandler(EVNT_Handle event) {
 #if PL_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
 	  LED2_Neg();
+	  MOT_Motor_Test(20);
+	  WAIT1_Waitms(1000);
+	  MOT_Motor_Test(0);
+
     break;
     
   case EVNT_SW1_LPRESSED:
