@@ -35,10 +35,37 @@
 #if PL_HAS_SHELL_QUEUE
   #include "ShellQueue.h"
 #endif
+#if PL_HAS_LINE_SENSOR
+  #include "Reflectance.h"
+#endif
+#if PL_HAS_MOTOR
+  #include "Motor.h"
+#endif
+#if PL_HAS_ACCEL
+#if PL_IS_FRDM
+  #include "ACCEL1.h"
+#endif
+#endif
+#if PL_HAS_QUADRATURE
+  #include "Q4CLeft.h"
+  #include "Q4CRight.h"
+#endif
+#if PL_HAS_MOTOR_TACHO
+  #include "Tacho.h"
+#endif
+#if PL_HAS_RADIO
+  #include "Radio.h"
+  #include "RStdIO.h"
+  #include "RApp.h"
+#endif
+
+#if PL_HAS_PID
+  #include "PID.h"
+#endif
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_HAS_SHELL_QUEUE
-  /* \todo Implement using queues */
+  SQUEUE_SendString(msg);
 #else
   CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
 #endif
@@ -82,6 +109,36 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
 #endif
 #endif
+#if PL_HAS_LINE_SENSOR
+  REF_ParseCommand,
+#endif
+#if PL_HAS_MOTOR
+  MOT_ParseCommand,
+#endif
+#if PL_HAS_ACCEL
+#if defined(ACCEL1_PARSE_COMMAND_ENABLED)
+  ACCEL1_ParseCommand,
+#endif
+#endif
+#if PL_HAS_QUADRATURE
+#if Q4CLeft_PARSE_COMMAND_ENABLED
+  Q4CLeft_ParseCommand,
+#endif
+#if Q4CRight_PARSE_COMMAND_ENABLED
+  Q4CRight_ParseCommand,
+#endif
+#endif
+#if PL_HAS_MOTOR_TACHO
+  TACHO_ParseCommand,
+#endif
+#if PL_HAS_RADIO
+  RADIO_ParseCommand,
+  RAPP_ParseCommand,
+  RNWK_ParseCommand,
+#endif
+#if PL_HAS_PID
+  PID_ParseCommand,
+#endif
   NULL /* Sentinel */
 };
 
@@ -98,29 +155,45 @@ static unsigned char bluetooth_buf[48];
 
 static unsigned char localConsole_buf[48];
 
+#if !PL_HAS_RTOS
+/* only used if not using a task for the shell */
+void SHELL_Process(void) {
+  (void)CLS1_ReadAndParseWithCommandTable(localConsole_buf, sizeof(localConsole_buf), CLS1_GetStdio(), CmdParserTable);
+#if PL_HAS_BLUETOOTH
+  (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
+#endif
+}
+#endif
+
 #if PL_HAS_RTOS
 static portTASK_FUNCTION(ShellTask, pvParameters) {
-#if CLS1_DEFAULT_SERIAL
-  CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();  
+#if PL_HAS_RADIO
+  static unsigned char radio_cmd_buf[48];
+  CLS1_ConstStdIOType *ioRemote = RSTDIO_GetStdioRx();
 #endif
-  
+  CLS1_ConstStdIOTypePtr ioLocal = CLS1_GetStdio();
+
   (void)pvParameters; /* not used */
-#if CLS1_DEFAULT_SERIAL
   (void)CLS1_ParseWithCommandTable((unsigned char*)CLS1_CMD_HELP, ioLocal, CmdParserTable);
-#endif
   for(;;) {
-#if CLS1_DEFAULT_SERIAL
     (void)CLS1_ReadAndParseWithCommandTable(localConsole_buf, sizeof(localConsole_buf), ioLocal, CmdParserTable);
+#if PL_HAS_RADIO
+    (void)RAPP_Process(ioLocal); /* dispatch incoming messages */
+    (void)CLS1_ReadAndParseWithCommandTable(radio_cmd_buf, sizeof(radio_cmd_buf), ioRemote, CmdParserTable);
 #endif
 #if PL_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
 #if PL_HAS_SHELL_QUEUE
     {
-      /*! \todo Handle shell queue */
+      unsigned char ch;
+
+      while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
+        ioLocal->stdOut(ch);
+      }
     }
 #endif
-    FRTOS1_vTaskDelay(50/portTICK_RATE_MS);
+     FRTOS1_vTaskDelay(50/portTICK_RATE_MS);
   } /* for */
 }
 #endif /* PL_HAS_RTOS */
@@ -131,11 +204,8 @@ void SHELL_Init(void) {
 #endif
   localConsole_buf[0] = '\0';
   CLS1_Init();
-#if !CLS1_DEFAULT_SERIAL && PL_HAS_BLUETOOTH
-  (void)CLS1_SetStdio(&BT_stdio); /* use the Bluetooth stdio as default */
-#endif
 #if PL_HAS_RTOS
-  if (FRTOS1_xTaskCreate(ShellTask, "Shell", configMINIMAL_STACK_SIZE+100, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
+  if (FRTOS1_xTaskCreate(ShellTask, (signed portCHAR *)"Shell", configMINIMAL_STACK_SIZE+200, NULL, tskIDLE_PRIORITY+1, NULL) != pdPASS) {
     for(;;){} /* error */
   }
 #endif

@@ -47,7 +47,7 @@
   /*!< If we are using an RTOS */
 #define PL_HAS_SHELL_QUEUE    (1)
   /*!< If we have a message queue for the shell */
-#define PL_HAS_LINE_SENSOR    (0 && PL_IS_FRDM)
+#define PL_HAS_LINE_SENSOR    (1 && PL_IS_FRDM)
   /*!< If we are having a line sensor */
 #define PL_HAS_RTOS_TRACE    (0) //(1 && PL_HAS_RTOS && PL_IS_FRDM)
   /*!< Set to one if using Percepio Trace */
@@ -99,7 +99,7 @@
      /*!< Set to 1 if buzzer uses a hardware PWM signal */
 #elif PL_IS_FRDM
   #if PL_HAS_LED
-    #define PL_NOF_LEDS     3
+    #define PL_NOF_LEDS     4
      /*!< FRDM board has RGB LED plus one user LED on robot */
   #else
     #define PL_NOF_LEDS     0

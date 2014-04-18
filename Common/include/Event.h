@@ -40,6 +40,7 @@ typedef enum EVNT_Handle {
   EVNT_SW4_LPRESSED,    /*!< SW4 long pressed */
 #endif
 #endif
+  EVNT_REF_START_STOP_CALIBRATION,
   EVNT_NOF_EVENTS       /*!< Must be last one! */
 } EVNT_Handle;
 

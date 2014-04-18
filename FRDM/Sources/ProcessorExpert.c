@@ -73,6 +73,9 @@
 #include "BitIoLdd11.h"
 #include "IR6.h"
 #include "BitIoLdd12.h"
+#include "LED4.h"
+#include "LEDpin5.h"
+#include "BitIoLdd13.h"
 #include "WAIT1.h"
 #include "CS1.h"
 /* Including shared modules, which are used for whole project */
