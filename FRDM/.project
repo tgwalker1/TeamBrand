@@ -35,9 +35,9 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Common/include</locationURI>
 		</link>
 		<link>
-			<name>Sources/source</name>
+			<name>Sources/src</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Common/source</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/Common/src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
