@@ -72,8 +72,10 @@ void Cpu_OnNMIINT(void)
 void TI1_OnInterrupt(void)
 {
 	TMR_OnInterrupt();
+	Q4CLeft_Sample();
+	Q4CRight_Sample();
 
-	//EVNT_SetEvent(EVNT_LED_TOGGLE);
+	
 }
 
 /*

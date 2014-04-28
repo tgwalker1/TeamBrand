@@ -55,7 +55,7 @@
   /*!< Set to one if having DC motor driver */
 #define PL_HAS_ACCEL          (0)
   /*!< Set to one if having acceleration sensor */
-#define PL_HAS_QUADRATURE (0 && PL_IS_FRDM)
+#define PL_HAS_QUADRATURE (1 && PL_IS_FRDM)
   /*!< Quad-Encoders */
 #define PL_HAS_MOTOR_TACHO (0 && PL_IS_FRDM)
   /*!< Tacho Function */
