@@ -4,7 +4,7 @@
     <Name>ProcessorExpert</Name>
     <SavedBy>Andy</SavedBy>
     <ModificationStamp>32</ModificationStamp>
-    <Date>2014-04-28</Date>
+    <Date>2014-04-29</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.8.0.RT5_b1335-1805</PEversion>
   </Header>
@@ -9750,7 +9750,7 @@
               <ItemSymbol>IntPeriodTmg</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>init:10 ms;prec:5%;RTS:none</Value>
+              <Value>init:1 ms;prec:5%;RTS:none</Value>
               <RuntimeSetting>0</RuntimeSetting>
               <ReqDevPrescHigh>-1</ReqDevPrescHigh>
               <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -10779,7 +10779,7 @@
         <ItemSymbol>Tmg_ChanOffset0</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>init:10 ms;prec:5%;RTS:none</Value>
+        <Value>init:1 ms;prec:5%;RTS:none</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -34300,7 +34300,7 @@
               <RegCompType>EventCntr_LDD</RegCompType>
               <InheritedComponentState>
                 <BeanType>EventCntr_LDD</BeanType>
-                <Name />
+                <Name>EventCntrLdd2</Name>
                 <CompNumb>177</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -34315,7 +34315,7 @@
                     <ItemSymbol>DeviceName</ItemSymbol>
                     <ReadOnly>true</ReadOnly>
                     <UserReadOnly>true</UserReadOnly>
-                    <Value />
+                    <Value>EventCntrLdd2</Value>
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>Tmr</ItemSymbol>
@@ -35460,7 +35460,7 @@
       <ItemState>
         <ItemSymbol>Sample</ItemSymbol>
         <ReadOnly>true</ReadOnly>
-        <UserReadOnly>true</UserReadOnly>
+        <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>
@@ -35504,7 +35504,7 @@
       <ItemState>
         <ItemSymbol>ParseCommand</ItemSymbol>
         <ReadOnly>true</ReadOnly>
-        <UserReadOnly>true</UserReadOnly>
+        <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>
@@ -37044,7 +37044,7 @@
               <RegCompType>EventCntr_LDD</RegCompType>
               <InheritedComponentState>
                 <BeanType>EventCntr_LDD</BeanType>
-                <Name />
+                <Name>EventCntrLdd1</Name>
                 <CompNumb>186</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -37059,7 +37059,7 @@
                     <ItemSymbol>DeviceName</ItemSymbol>
                     <ReadOnly>true</ReadOnly>
                     <UserReadOnly>true</UserReadOnly>
-                    <Value />
+                    <Value>EventCntrLdd1</Value>
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>Tmr</ItemSymbol>
@@ -38204,7 +38204,7 @@
       <ItemState>
         <ItemSymbol>Sample</ItemSymbol>
         <ReadOnly>true</ReadOnly>
-        <UserReadOnly>true</UserReadOnly>
+        <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>
@@ -38248,7 +38248,7 @@
       <ItemState>
         <ItemSymbol>ParseCommand</ItemSymbol>
         <ReadOnly>true</ReadOnly>
-        <UserReadOnly>true</UserReadOnly>
+        <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
         <Value>true</Value>

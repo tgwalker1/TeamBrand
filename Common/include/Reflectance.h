@@ -24,6 +24,11 @@
    */
   uint8_t REF_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
 #endif
+  
+  /*!
+   * \brief Return true if Reflectance is calibrated 
+   */
+  uint8_t REF_IsCalibrated(void);
 
 /*!
  * \brief Driver Deinitialization.

@@ -308,6 +308,11 @@ static void REF_StateMachine(void) {
   } /* switch */
 }
 
+uint8_t REF_IsCalibrated()
+{
+	return refState == REF_STATE_READY;
+}
+
 static portTASK_FUNCTION(ReflTask, pvParameters) {
   (void)pvParameters; /* not used */
   for(;;) {
