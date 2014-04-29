@@ -30,7 +30,7 @@
 #include "RTOSTRC1.h"
 #endif
 #if PL_HAS_MOTOR
-#include "Motor.h"
+#include "DriveCommands.h"
 #endif
 #if PL_HAS_LINE_SENSOR
 #include "Reflectance.h"
@@ -55,9 +55,9 @@ static void APP_EvntHandler(EVNT_Handle event) {
 		if (REF_IsCalibrated()) {
 			// start process
 			LED2_Neg();
-			MOT_Motor_Test(20);
+			DCM_Motor_Test(20);
 			WAIT1_Waitms(1000);
-			MOT_Motor_Test(0);
+			DCM_Motor_Test(0);
 		}
 
 		break;

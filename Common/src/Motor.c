@@ -25,17 +25,7 @@ MOT_MotorDevice *MOT_GetMotorHandle(MOT_MotorSide side) {
   }
 }
 
-//This is a method to test the functionality of the motors. Can be deleted if not used.
-//Liebs Griässli fir all wo das läsed. Andy
-void MOT_Motor_Test(MOT_SpeedPercent percent)
-{
-	  MOT_SetDirection(&motorL, MOT_DIR_FORWARD);
-	  MOT_SetDirection(&motorR, MOT_DIR_BACKWARD);
-	  MOT_SetSpeedPercent(&motorL, percent);
-	  MOT_SetSpeedPercent(&motorR, percent);
-	  MOT_SetDirection(&motorL, MOT_DIR_FORWARD);
-	  MOT_SetDirection(&motorR, MOT_DIR_BACKWARD);
-}
+
 
 static uint8_t PWMLSetRatio16(uint16_t ratio) {
   return PWML_SetRatio16(ratio);
