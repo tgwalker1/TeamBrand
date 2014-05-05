@@ -60,6 +60,12 @@
 #if PL_HAS_PID
   #include "PID.h"
 #endif
+#if PL_HAS_DRIVE
+  #include "Drive.h"
+#endif
+#if PL_HAS_ULTRASONIC
+  #include "Ultrasonic.h"
+#endif
 #if PL_HAS_RADIO
   #include "RStack.h"
 #endif
@@ -104,6 +110,9 @@ static void PL_Init(void) {
 #if PL_HAS_LINE_SENSOR
   REF_Init();
 #endif
+#if PL_HAS_DRIVE
+  DRV_Init();
+#endif
 #if PL_HAS_RTOS_TRACE
   if (RTOSTRC1_uiTraceStart()==0) {
     for(;;){} /* error starting trace recorder. Not setup for enough queues/tasks/etc? */
@@ -127,6 +136,10 @@ static void PL_Init(void) {
 #if PL_HAS_RADIO
   RSTACK_Init();
 #endif
+#if PL_HAS_ULTRASONIC
+  US_Init();
+#endif
+  
 #if PL_HAS_STRATEGY
   Strategy_Init(); 
 #endif
@@ -186,6 +199,12 @@ static void PL_Deinit(void) {
 #endif
 #if PL_HAS_LED
   LED_Deinit();
+#endif
+#if PL_HAS_DRIVE
+  DRV_Deinit();
+#endif
+#if PL_HAS_ULTRASONIC
+  US_Deinit();
 #endif
 }
 

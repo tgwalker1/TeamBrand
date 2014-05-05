@@ -29,11 +29,13 @@
 #if PL_HAS_RTOS_TRACE
 #include "RTOSTRC1.h"
 #endif
-#if PL_HAS_MOTOR
-#include "DriveCommands.h"
-#endif
+
 #if PL_HAS_LINE_SENSOR
 #include "Reflectance.h"
+#endif
+
+#if PL_HAS_DRIVE
+#include "Drive.h"
 #endif
 
 static void APP_EvntHandler(EVNT_Handle event) {
@@ -55,9 +57,9 @@ static void APP_EvntHandler(EVNT_Handle event) {
 		if (REF_IsCalibrated()) {
 			// start process
 			LED2_Neg();
-			DCM_Motor_Test(20);
+			DRV_Drive_Forward(100);
 			WAIT1_Waitms(1000);
-			DCM_Motor_Test(0);
+			DRV_Drive_Forward(0);
 		}
 
 		break;
@@ -67,9 +69,9 @@ static void APP_EvntHandler(EVNT_Handle event) {
 		LED4_Neg();
 		WAIT1_Waitms(1000);
 		EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
-		MOT_Motor_Test(20);
+//		MOT_Motor_Test(20);
 		WAIT1_Waitms(1000);
-		MOT_Motor_Test(0);
+//		MOT_Motor_Test(0);
 		EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
 		WAIT1_Waitms(500);
 		if (REF_IsCalibrated()) {

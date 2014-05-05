@@ -59,8 +59,13 @@
   /*!< Quad-Encoders */
 #define PL_HAS_MOTOR_TACHO (1 && PL_IS_FRDM)
   /*!< Tacho Function */
-#define PL_HAS_PID (0 && PL_IS_FRDM)
-  /*!< Tacho Function */
+#define PL_HAS_DRIVE (1 && PL_IS_FRDM)
+  /*!< Drive Function */
+#define PL_HAS_PID (1 && PL_IS_FRDM)
+  /*!< PID Function */
+#define PL_HAS_ULTRASONIC (1 && PL_IS_FRDM)
+  /*!< Ultrasonic Function */
+
 #define PL_HAS_STRATEGY (0 && PL_IS_FRDM)
   /*!< Strategy implemented */
 

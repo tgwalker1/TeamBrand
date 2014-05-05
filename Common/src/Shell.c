@@ -53,6 +53,9 @@
 #if PL_HAS_MOTOR_TACHO
   #include "Tacho.h"
 #endif
+#if PL_HAS_DRIVE
+  #include "Drive.h"
+#endif
 #if PL_HAS_RADIO
   #include "Radio.h"
   #include "RStdIO.h"
@@ -138,6 +141,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_PID
   PID_ParseCommand,
+#endif
+#if PL_HAS_DRIVE
+  DRV_ParseCommand,
 #endif
   NULL /* Sentinel */
 };

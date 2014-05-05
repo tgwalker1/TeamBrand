@@ -113,7 +113,7 @@ void TACHO_Sample(void) {
     TACHO_PosHistory_Index = 0;
   }
   /* temporary only */
-  TACHO_CalcSpeed();
+ // TACHO_CalcSpeed();
 #else
   /*! \todo Implement function */ 
 #endif
