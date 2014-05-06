@@ -32,6 +32,9 @@
 #if PL_HAS_BLUETOOTH
   #include "BT1.h"
 #endif
+#if PL_HAS_ULTRASONIC
+  #include "Ultrasonic.h"
+#endif
 #if PL_HAS_SHELL_QUEUE
   #include "ShellQueue.h"
 #endif
@@ -133,6 +136,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
 #if PL_HAS_MOTOR_TACHO
   TACHO_ParseCommand,
+#endif
+#if PL_HAS_ULTRASONIC
+  US_ParseCommand,
 #endif
 #if PL_HAS_RADIO
   RADIO_ParseCommand,

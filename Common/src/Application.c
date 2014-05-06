@@ -29,6 +29,9 @@
 #if PL_HAS_RTOS_TRACE
 #include "RTOSTRC1.h"
 #endif
+#if PL_HAS_ULTRASONIC
+#include "Ultrasonic.h"
+#endif
 
 #if PL_HAS_LINE_SENSOR
 #include "Reflectance.h"
@@ -111,10 +114,14 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 #if PL_HAS_KEYS && !PL_HAS_KBI
 		KEY_Scan(); /* poll keys */
 #endif
+		
 		FRTOS1_vTaskDelay(20/portTICK_RATE_MS);
 		msCnt += 20;
 		if (msCnt > 1000) {
 			LED1_Neg();
+			#if PL_HAS_ULTRASONIC
+				(void)US_Measure_us(); /* Measure distance */
+			#endif
 			msCnt = 0;
 		}
 	}
