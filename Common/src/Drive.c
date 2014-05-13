@@ -10,6 +10,7 @@
 #include "FRTOS1.h"
 #include "Pid.h"
 #include "Tacho.h"
+#include "Drive.h"
 
 static bool DRV_SpeedOn = FALSE;
 static int32_t DRV_SpeedLeft, DRV_SpeedRight;
@@ -40,6 +41,20 @@ void DRV_Drive_Forward(int32_t speed)
 		DRV_SpeedOn = TRUE;
 	}
 	
+}
+
+void DRV_Drive_Circle(int32_t speed)
+{
+	DRV_SpeedLeft = speed;
+	DRV_SpeedRight = speed;
+	if(speed == 0)
+	{
+		DRV_SpeedOn = FALSE;
+	}
+	else
+	{
+		DRV_SpeedOn = TRUE;
+	}
 }
 
 #if PL_HAS_SHELL

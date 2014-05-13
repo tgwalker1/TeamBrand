@@ -66,7 +66,7 @@
 #define PL_HAS_ULTRASONIC (1 && PL_IS_FRDM)
   /*!< Ultrasonic Function */
 
-#define PL_HAS_STRATEGY (0 && PL_IS_FRDM)
+#define PL_HAS_STRATEGY (1 && PL_IS_FRDM)
   /*!< Strategy implemented */
 
 #define PL_HAS_RADIO          (0)

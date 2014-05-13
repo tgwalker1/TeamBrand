@@ -141,7 +141,7 @@ static void PL_Init(void) {
 #endif
   
 #if PL_HAS_STRATEGY
-  Strategy_Init(); 
+  STR_Init(); 
 #endif
 }
 

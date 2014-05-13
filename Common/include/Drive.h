@@ -22,6 +22,7 @@
  */
 
 void DRV_Drive_Forward(int32_t speed);
+void DRV_Drive_Circle(int32_t speed);
 
 uint8_t DRV_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
 #endif

@@ -197,16 +197,16 @@ void PID_Deinit(void) {
 
 void PID_Init(void) {
 	  /*! \Left Motor */
-	  speedLeftConfig.pFactor100 = 4100;
-	  speedLeftConfig.iFactor100 = 3500;
-	  speedLeftConfig.dFactor100 = 200;
+	  speedLeftConfig.pFactor100 = 5500;
+	  speedLeftConfig.iFactor100 = 15;
+	  speedLeftConfig.dFactor100 = 0;
 	  speedLeftConfig.iAntiWindup = 10000;
 	  
 	  /*! \Right Motor */
 
-	  speedRightConfig.pFactor100 = 4100;
-	  speedRightConfig.iFactor100 = 3500;
-	  speedRightConfig.dFactor100 = 200;
+	  speedRightConfig.pFactor100 = 7000;
+	  speedRightConfig.iFactor100 = 15;
+	  speedRightConfig.dFactor100 = 0;
 	  speedRightConfig.iAntiWindup = 10000;
 	  
 	  PID_Start();

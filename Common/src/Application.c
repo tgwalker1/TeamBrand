@@ -9,7 +9,9 @@
 
 #include "Platform.h"
 #include "Application.h"
+#include "Strategy.h"
 #include "WAIT1.h"
+
 #if PL_HAS_EVENTS
 #include "Event.h"
 #endif
@@ -41,6 +43,10 @@
 #include "Drive.h"
 #endif
 
+#if PL_HAS_STRATEGY
+#include "Strategy.h"
+#endif
+
 static void APP_EvntHandler(EVNT_Handle event) {
 	switch (event) {
 	case EVNT_INIT:
@@ -58,11 +64,7 @@ static void APP_EvntHandler(EVNT_Handle event) {
 	case EVNT_SW1_PRESSED:
 
 		if (REF_IsCalibrated()) {
-			// start process
-			LED2_Neg();
-			DRV_Drive_Forward(100);
-			WAIT1_Waitms(1000);
-			DRV_Drive_Forward(0);
+			STR_Start();
 		}
 
 		break;
