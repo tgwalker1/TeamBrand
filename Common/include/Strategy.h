@@ -11,7 +11,7 @@
 
 #include "Platform.h"
 
-#define WHITEEDGE 25 
+#define WHITEEDGE 10 
 #define SPEED_MAX 80
 #define	SPEED_NORM 60
 

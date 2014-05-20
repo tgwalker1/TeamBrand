@@ -181,7 +181,7 @@ uint8_t REF_CheckOnEdge(void)
 		{
 			value++;  
 		}
-		SensorCalibrated[i] = 1000;
+//		SensorCalibrated[i] = 1000;
 
 	}
 	return (value>1);	

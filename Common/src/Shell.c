@@ -46,7 +46,7 @@
 #endif
 #if PL_HAS_ACCEL
 #if PL_IS_FRDM
-  #include "ACCEL1.h"
+  #include "ACCEL.h"
 #endif
 #endif
 #if PL_HAS_QUADRATURE

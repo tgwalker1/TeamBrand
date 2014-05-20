@@ -44,7 +44,8 @@ void DRV_Edge_Correction(void)
 {
 	uint16_t value;
 	value = REF_GetLinePos();
-	DRV_Drive_Forward_Tick(-SPEED_NORM,48);;
+	
+	DRV_Drive_Forward_Tick(-SPEED_NORM,48);
 	if(value<2000)
 	{
 		BUZ_Beep(300,500);
@@ -55,11 +56,13 @@ void DRV_Edge_Correction(void)
 	{
 		BUZ_Beep(500,500);
 		DRV_Drive_Circle_Tick(-SPEED_NORM,24);
+
 	}
 	else
 	{
 		BUZ_Beep(700,500);
 		DRV_Drive_Circle_Tick(-SPEED_NORM,48);
+
 	}
 	DRV_Drive_Forward(SPEED_NORM);
 }
@@ -72,15 +75,15 @@ void DRV_Drive_Forward(int32_t speed)
 
 void DRV_Drive_Forward_Tick(int32_t speed, word ticks)
 {
-	DRV_SpeedLeft = speed;
-	DRV_SpeedRight = speed;
 	word ticks_Start;
 	ticks_Start = Q4CLeft_GetPos()+20000;
-	if(speed>0)
+	DRV_SpeedLeft = speed;
+	DRV_SpeedRight = speed;
+	if(DRV_SpeedLeft>0)
 	{
 		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
 		{
-			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
 		}
 		DRV_Motor_Stop();
 	}
@@ -88,7 +91,7 @@ void DRV_Drive_Forward_Tick(int32_t speed, word ticks)
 	{
 		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
 		{
-			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
 		}
 		DRV_Motor_Stop();
 	}
@@ -104,15 +107,26 @@ void DRV_Drive_Circle(int32_t speed)
 
 void DRV_Drive_Circle_Tick(int32_t speed, word ticks)
 {
-	DRV_SpeedLeft = -speed;
-	DRV_SpeedRight = speed;
+	DRV_SpeedLeft = speed;
+	DRV_SpeedRight = -speed;
 	word ticks_Start;
-	ticks_Start = Q4CLeft_GetPos();
-	while((Q4CLeft_GetPos() < ticks_Start+ticks+2)&&((Q4CLeft_GetPos() >ticks_Start+ticks-2)))
+	ticks_Start = Q4CLeft_GetPos()+20000;
+	if(DRV_SpeedLeft>0)
 	{
-		FRTOS1_vTaskDelay(50/portTICK_RATE_MS);
+		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
+		{
+			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		}
+		DRV_Motor_Stop();
 	}
-	DRV_Motor_Stop();
+	else
+	{
+		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
+		{
+			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		}
+		DRV_Motor_Stop();
+	}
 }
 
 #if PL_HAS_SHELL

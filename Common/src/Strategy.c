@@ -14,6 +14,7 @@
 #include "FRTOS1.h"
 #include "Reflectance.h"
 #include "Ultrasonic.h"
+#include "Accel.h"
 #if PL_HAS_LED
 #include "LED.h"
 #endif
@@ -21,77 +22,87 @@
 #include "Buzzer.h"
 #endif
 
-
-
-
 STR_States_t state;
 
-STR_States_t STR_GetState(void)
-{
+STR_States_t STR_GetState(void) {
 	return state;
 }
-void STR_SetState(STR_States_t nextState)
-{
+void STR_SetState(STR_States_t nextState) {
 	state = nextState;
 }
-void STR_StateMachine()
-{
-	switch(state)
-	{
-	case STR_IDLE :
+void STR_StateMachine() {
+
+	int16_t x, y, z;
+	bool isEnabled;
+	uint8_t res;
+
+	res = ACCEL_isEnabled(&isEnabled);
+	if (res == ERR_OK && isEnabled) {
+		ACCEL_GetValues(&x, &y, &z);
+	}
+	if (res == ERR_OK && isEnabled) {
+		if (z > 800) {
+//				          MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
+//				          MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
+#if PL_HAS_DRIVE
+			DRV_Drive_Forward(0);
+			BUZ_Beep(800, 1000);
+#endif
+		}
+	}
+
+	switch (state) {
+	case STR_IDLE:
 		break;
-	case STR_WAIT : 
+	case STR_WAIT:
 		LED2_On();
-		BUZ_Beep(400,500);
+		BUZ_Beep(400, 500);
 		WAIT1_Waitms(500);
-		BUZ_Beep(400,500);
+		BUZ_Beep(400, 500);
 		WAIT1_Waitms(500);
-		BUZ_Beep(600,500);
+		BUZ_Beep(600, 500);
 		DRV_Drive_Forward(SPEED_NORM);
 		state = STR_SEEK;
 		LED2_Off();
 		break;
-	case STR_SEEK :
+	case STR_SEEK:
 		LED3_On();
-		if(REF_CheckOnEdge())
-		{
+		if (REF_CheckOnEdge()) {
 			LED4_On();
+			DRV_Motor_Stop();
 			DRV_Edge_Correction();
 			LED4_Off();
 		}
 		LED3_Off();
 		break;
-	case STR_KAMIKAZE: 
+	case STR_KAMIKAZE:
 		LED2_On();
-		while(US_GetLastCentimeterValue()<DISTANCE_MIN)
-		{
+		while (US_GetLastCentimeterValue() < DISTANCE_MIN) {
 			DRV_Drive_Forward(SPEED_MAX);
 		}
 		DRV_Drive_Forward(SPEED_NORM);
 		state = STR_SEEK;
 		LED2_Off();
 		break;
-	case STR_SHUTDOWN : 
+	case STR_SHUTDOWN:
 		break;
 	}
-	
+
 }
 #if PL_HAS_RTOS
 static portTASK_FUNCTION(StrategyTask, pvParameters) {
 
 	(void) pvParameters; /* parameter not used */
-	for (;;) 
-	{		
+	for (;;) {
 		STR_StateMachine();
 		FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
-	
+
 	}
 }
 
-void STR_Init(void) 
-{
+void STR_Init(void) {
 	state = STR_IDLE;
-	
+
 	if (FRTOS1_xTaskCreate(
 			StrategyTask, /* pointer to the task */
 			"Strategy", /* task name for kernel awareness debugging */
@@ -107,13 +118,11 @@ void STR_Init(void)
 	}
 }
 
-void STR_Deinit(void) 
-{
-	
+void STR_Deinit(void) {
+
 }
 
-void STR_Start()
-{
+void STR_Start() {
 	state = STR_WAIT;
 }
 

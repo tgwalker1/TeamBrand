@@ -24,8 +24,31 @@ void ACCEL_Deinit(void);
 /*! \brief Initialization of the module */
 void ACCEL_Init(void);
 
+/*!
+ * \brief Mutex to request access to device
+ */
+void ACCEL_RequestDevice(void);
+
+/*!
+ * \brief Mutex to release access to device
+ */
+void ACCEL_ReleaseDevice(void);
+
 /*! \brief Initialization of the module. This communicates to the device and needs interrupts enabled! */
 uint8_t ACCEL_LowLevelInit(void);
+
+/*!
+ * \brief Enables the device
+ * \return Error code, ERR_OK for no failure.
+ */
+uint8_t ACCEL_Enable(void);
+
+/*!
+ * \brief Routine to find out if the accelerometer is enabled or not.
+ * \param isEnabled Reflects the status of the sensor.
+ * \return Error code, ERR_OK for no error.
+ */
+uint8_t ACCEL_isEnabled(bool *isEnabled);
 
 #endif /* PL_HAS_ACCEL */
 

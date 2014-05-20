@@ -32,6 +32,9 @@
 #if PL_HAS_RTOS_TRACE
 #include "RTOSTRC1.h"
 #endif
+#if PL_HAS_ACCEL
+  ACCEL_Init();
+#endif
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
 #endif
@@ -116,6 +119,9 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 	uint16_t msCnt;
 
 	(void) pvParameters; /* parameter not used */
+#if PL_HAS_ACCEL
+  ACCEL_LowLevelInit()!=ERR_OK; /* always enable accelerometer */
+#endif
 	for (;;) {
 		EVNT_HandleEvent(APP_EvntHandler);
 #if PL_HAS_KEYS && !PL_HAS_KBI
@@ -133,6 +139,8 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 						}
 			#endif
 			msCnt = 0;
+			
+	
 		}
 	}
 }
