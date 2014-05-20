@@ -11,6 +11,7 @@
 #include "Application.h"
 #include "Strategy.h"
 #include "WAIT1.h"
+#include "Q4CLeft.h"
 
 #if PL_HAS_EVENTS
 #include "Event.h"

@@ -18,6 +18,7 @@
 #if PL_HAS_BUZZER
 #include "Buzzer.h"
 #endif
+#include  "Q4CLeft.h"
 
 static bool DRV_SpeedOn = FALSE;
 static int32_t DRV_SpeedLeft, DRV_SpeedRight;
@@ -43,28 +44,23 @@ void DRV_Edge_Correction(void)
 {
 	uint16_t value;
 	value = REF_GetLinePos();
-	DRV_Drive_Forward(-SPEED_NORM);
-	WAIT1_Waitms(200);
+	DRV_Drive_Forward_Tick(-SPEED_NORM,48);;
 	if(value<2000)
 	{
 		BUZ_Beep(300,500);
-		DRV_Drive_Circle(SPEED_NORM);
-		WAIT1_Waitms(150);
+		DRV_Drive_Circle_Tick(SPEED_NORM,24);
 		
 	}
 	else if(value>4000)
 	{
 		BUZ_Beep(500,500);
-		DRV_Drive_Circle(-SPEED_NORM);
-		WAIT1_Waitms(150);
+		DRV_Drive_Circle_Tick(-SPEED_NORM,24);
 	}
 	else
 	{
 		BUZ_Beep(700,500);
-		DRV_Drive_Circle(-SPEED_NORM);
-		WAIT1_Waitms(300);
+		DRV_Drive_Circle_Tick(-SPEED_NORM,48);
 	}
-	DRV_Motor_Stop();
 	DRV_Drive_Forward(SPEED_NORM);
 }
 void DRV_Drive_Forward(int32_t speed)
@@ -74,11 +70,49 @@ void DRV_Drive_Forward(int32_t speed)
 	
 }
 
+void DRV_Drive_Forward_Tick(int32_t speed, word ticks)
+{
+	DRV_SpeedLeft = speed;
+	DRV_SpeedRight = speed;
+	word ticks_Start;
+	ticks_Start = Q4CLeft_GetPos()+20000;
+	if(speed>0)
+	{
+		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
+		{
+			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		}
+		DRV_Motor_Stop();
+	}
+	else
+	{
+		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
+		{
+			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+		}
+		DRV_Motor_Stop();
+	}
+
+
+}
 void DRV_Drive_Circle(int32_t speed)
 {
 	DRV_SpeedLeft = -speed;
 	DRV_SpeedRight = speed;
 
+}
+
+void DRV_Drive_Circle_Tick(int32_t speed, word ticks)
+{
+	DRV_SpeedLeft = -speed;
+	DRV_SpeedRight = speed;
+	word ticks_Start;
+	ticks_Start = Q4CLeft_GetPos();
+	while((Q4CLeft_GetPos() < ticks_Start+ticks+2)&&((Q4CLeft_GetPos() >ticks_Start+ticks-2)))
+	{
+		FRTOS1_vTaskDelay(50/portTICK_RATE_MS);
+	}
+	DRV_Motor_Stop();
 }
 
 #if PL_HAS_SHELL
