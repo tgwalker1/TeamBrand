@@ -71,17 +71,21 @@ static void APP_EvntHandler(EVNT_Handle event) {
 
 	case EVNT_SW1_LPRESSED:
 #if PL_HAS_LINE_SENSOR
-		LED4_Neg();
-		WAIT1_Waitms(1000);
+		LED4_On();
+		WAIT1_Waitms(500);
 		EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
-//		MOT_Motor_Test(20);
-		WAIT1_Waitms(1000);
-//		MOT_Motor_Test(0);
+		DRV_Drive_Forward(40);
+		WAIT1_Waitms(300);
+		DRV_Drive_Forward(-60);
+		WAIT1_Waitms(200);
+		DRV_Drive_Forward(0);
 		EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
 		WAIT1_Waitms(500);
 		if (REF_IsCalibrated()) {
-			LED4_Neg();
+			LED4_Off();
 		}
+		break;
+		
 #endif
 		break;
 #endif
@@ -119,10 +123,13 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 		
 		FRTOS1_vTaskDelay(20/portTICK_RATE_MS);
 		msCnt += 20;
-		if (msCnt > 1000) {
-			LED1_Neg();
+		if (msCnt > 280) {
 			#if PL_HAS_ULTRASONIC
 				(void)US_Measure_us(); /* Measure distance */
+				if(US_GetLastCentimeterValue()<DISTANCE_MIN && STR_GetState()!=STR_IDLE)
+						{
+							STR_SetState(STR_KAMIKAZE);
+						}
 			#endif
 			msCnt = 0;
 		}

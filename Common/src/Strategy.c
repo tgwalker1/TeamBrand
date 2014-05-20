@@ -12,21 +12,28 @@
 #include "WAIT1.h"
 #include "Drive.h"
 #include "FRTOS1.h"
+#include "Reflectance.h"
+#include "Ultrasonic.h"
 #if PL_HAS_LED
 #include "LED.h"
 #endif
+#if PL_HAS_BUZZER
+#include "Buzzer.h"
+#endif
 
-typedef enum
-{
-	STR_IDLE,
-	STR_WAIT,
-	STR_SEEK,
-	STR_KAMIKAZE,
-	STR_SHUTDOWN //Wenner auf dem Rücken liegt
-}STR_States_t;
+
+
 
 STR_States_t state;
 
+STR_States_t STR_GetState(void)
+{
+	return state;
+}
+void STR_SetState(STR_States_t nextState)
+{
+	state = nextState;
+}
 void STR_StateMachine()
 {
 	switch(state)
@@ -35,16 +42,34 @@ void STR_StateMachine()
 		break;
 	case STR_WAIT : 
 		LED2_On();
-		WAIT1_Waitms(1000);
+		BUZ_Beep(400,500);
+		WAIT1_Waitms(500);
+		BUZ_Beep(400,500);
+		WAIT1_Waitms(500);
+		BUZ_Beep(600,500);
+		DRV_Drive_Forward(SPEED_NORM);
 		state = STR_SEEK;
 		LED2_Off();
 		break;
 	case STR_SEEK :
 		LED3_On();
-		DRV_Drive_Circle(120);
+		if(REF_CheckOnEdge())
+		{
+			LED4_On();
+			DRV_Edge_Correction();
+			LED4_Off();
+		}
 		LED3_Off();
 		break;
 	case STR_KAMIKAZE: 
+		LED2_On();
+		while(US_GetLastCentimeterValue()<DISTANCE_MIN)
+		{
+			DRV_Drive_Forward(SPEED_MAX);
+		}
+		DRV_Drive_Forward(SPEED_NORM);
+		state = STR_SEEK;
+		LED2_Off();
 		break;
 	case STR_SHUTDOWN : 
 		break;

@@ -21,6 +21,7 @@
 #include "Application.h"
 #include "Event.h"
 #include "Shell.h"
+#include "Strategy.h"
 
 #define REF_NOF_SENSORS 6 /* number of sensors */
 
@@ -148,7 +149,8 @@ static void ReadCalibrated(SensorTimeType calib[REF_NOF_SENSORS], SensorTimeType
   int32_t x, denominator;
   
   REF_MeasureRaw(raw);
-  for(i=0;i<REF_NOF_SENSORS;i++) {
+  for(i=0;i<REF_NOF_SENSORS;i++) 
+  {
     x = 0;
     denominator = SensorCalibMinMax.maxVal[i]-SensorCalibMinMax.minVal[i];
     if (denominator!=0) {
@@ -161,10 +163,41 @@ static void ReadCalibrated(SensorTimeType calib[REF_NOF_SENSORS], SensorTimeType
     }
     calib[i] = x;
   }
+  
 }
 
 static void REF_Measure(void) {
   ReadCalibrated(SensorCalibrated, SensorRaw);
+}
+
+uint8_t REF_CheckOnEdge(void)
+{
+	uint8_t value;
+	int i;
+	value = 0; 
+	for(i=0;i<=REF_NOF_SENSORS; i++)
+	{
+		if(SensorCalibrated[i] < WHITEEDGE)
+		{
+			value++;  
+		}
+		SensorCalibrated[i] = 1000;
+
+	}
+	return (value>1);	
+}
+
+uint16_t REF_GetLinePos(void)
+{
+	uint16_t Numerator = 0;
+	uint16_t Denumerator = 0;
+	int i;
+	for(i=0;i<=REF_NOF_SENSORS; i++){
+		Numerator += SensorCalibrated[i]*1000;
+		Denumerator += SensorCalibrated[i];
+	}
+	uint16_t value = (uint16_t)(Numerator/Denumerator);
+	return value;
 }
 
 static uint8_t PrintHelp(const CLS1_StdIOType *io) {

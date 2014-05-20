@@ -12,6 +12,9 @@
 #include "Platform.h"
 #if PL_HAS_LINE_SENSOR
 
+uint8_t REF_CheckOnEdge(void);
+uint16_t REF_GetLinePos(void);
+
 #if PL_HAS_SHELL
   #include "CLS1.h"
   
@@ -29,6 +32,7 @@
    * \brief Return true if Reflectance is calibrated 
    */
   uint8_t REF_IsCalibrated(void);
+  
 
 /*!
  * \brief Driver Deinitialization.

@@ -10,7 +10,14 @@
 #include "FRTOS1.h"
 #include "Pid.h"
 #include "Tacho.h"
+#include "Reflectance.h"
 #include "Drive.h"
+#include "WAIT1.h"
+#include "Trigger.h"
+#include "Strategy.h"
+#if PL_HAS_BUZZER
+#include "Buzzer.h"
+#endif
 
 static bool DRV_SpeedOn = FALSE;
 static int32_t DRV_SpeedLeft, DRV_SpeedRight;
@@ -27,34 +34,51 @@ static portTASK_FUNCTION(DriveTask, pvParameters) {
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   } /* for */
 }
-
-void DRV_Drive_Forward(int32_t speed)
+void DRV_Motor_Stop(void)
 {
-	DRV_SpeedLeft = -speed;
-	DRV_SpeedRight = speed;
-	if(speed == 0)
+	DRV_SpeedLeft = 0;
+	DRV_SpeedRight = 0;
+}
+void DRV_Edge_Correction(void)
+{
+	uint16_t value;
+	value = REF_GetLinePos();
+	DRV_Drive_Forward(-SPEED_NORM);
+	WAIT1_Waitms(200);
+	if(value<2000)
 	{
-		DRV_SpeedOn = FALSE;
+		BUZ_Beep(300,500);
+		DRV_Drive_Circle(SPEED_NORM);
+		WAIT1_Waitms(150);
+		
+	}
+	else if(value>4000)
+	{
+		BUZ_Beep(500,500);
+		DRV_Drive_Circle(-SPEED_NORM);
+		WAIT1_Waitms(150);
 	}
 	else
 	{
-		DRV_SpeedOn = TRUE;
+		BUZ_Beep(700,500);
+		DRV_Drive_Circle(-SPEED_NORM);
+		WAIT1_Waitms(300);
 	}
+	DRV_Motor_Stop();
+	DRV_Drive_Forward(SPEED_NORM);
+}
+void DRV_Drive_Forward(int32_t speed)
+{
+	DRV_SpeedLeft = speed;
+	DRV_SpeedRight = speed;
 	
 }
 
 void DRV_Drive_Circle(int32_t speed)
 {
-	DRV_SpeedLeft = speed;
+	DRV_SpeedLeft = -speed;
 	DRV_SpeedRight = speed;
-	if(speed == 0)
-	{
-		DRV_SpeedOn = FALSE;
-	}
-	else
-	{
-		DRV_SpeedOn = TRUE;
-	}
+
 }
 
 #if PL_HAS_SHELL
@@ -123,7 +147,7 @@ void DRV_Deinit(void) {
 }
 
 void DRV_Init(void) {
-  DRV_SpeedOn = FALSE;
+  DRV_SpeedOn = TRUE;
   DRV_SpeedLeft = 0;
   DRV_SpeedRight = 0;
   if (FRTOS1_xTaskCreate(

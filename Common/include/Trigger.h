@@ -26,6 +26,7 @@ typedef enum {
 #if PL_HAS_BUZZER
   TRG_BUZ_BEEP,    /*!< Trigger for buzzer */
 #endif
+  TRG_MOT_STOP,
   TRG_NOF_TRIGGERS /*!< Must be last! */
 } TRG_TriggerKind;
 

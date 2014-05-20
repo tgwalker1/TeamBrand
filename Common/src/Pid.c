@@ -76,7 +76,7 @@ void PID_Speed(int32_t currSpeed, int32_t setSpeed, bool isLeft) {
   if (isLeft) {
     PID_SpeedCfg(currSpeed, setSpeed, isLeft, &speedLeftConfig);
   } else {
-    PID_SpeedCfg(currSpeed, setSpeed, isLeft, &speedRightConfig);
+    PID_SpeedCfg(-currSpeed, -setSpeed, isLeft, &speedRightConfig);
   }
 }
 
@@ -198,14 +198,14 @@ void PID_Deinit(void) {
 void PID_Init(void) {
 	  /*! \Left Motor */
 	  speedLeftConfig.pFactor100 = 5500;
-	  speedLeftConfig.iFactor100 = 15;
+	  speedLeftConfig.iFactor100 = 1500;
 	  speedLeftConfig.dFactor100 = 0;
 	  speedLeftConfig.iAntiWindup = 10000;
 	  
 	  /*! \Right Motor */
 
-	  speedRightConfig.pFactor100 = 7000;
-	  speedRightConfig.iFactor100 = 15;
+	  speedRightConfig.pFactor100 = 5500;
+	  speedRightConfig.iFactor100 = 1500;
 	  speedRightConfig.dFactor100 = 0;
 	  speedRightConfig.iAntiWindup = 10000;
 	  
