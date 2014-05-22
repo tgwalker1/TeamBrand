@@ -21,7 +21,7 @@
  * \param[in] io Std I/O handler of shell
  */
 
-void DRV_Motor_Stop(void);
+void DRV_Motor_Stop(void *dataPtr);
 void DRV_Drive_Forward(int32_t speed);
 void DRV_Drive_Forward_Tick(int32_t speed, word ticks);
 void DRV_Drive_Circle(int32_t speed);

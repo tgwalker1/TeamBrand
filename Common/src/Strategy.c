@@ -39,11 +39,7 @@ void STR_StateMachine() {
 	res = ACCEL_isEnabled(&isEnabled);
 	if (res == ERR_OK && isEnabled) {
 		ACCEL_GetValues(&x, &y, &z);
-	}
-	if (res == ERR_OK && isEnabled) {
 		if (z > 800) {
-//				          MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
-//				          MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
 #if PL_HAS_DRIVE
 			DRV_Drive_Forward(0);
 			BUZ_Beep(800, 1000);
@@ -69,7 +65,7 @@ void STR_StateMachine() {
 		LED3_On();
 		if (REF_CheckOnEdge()) {
 			LED4_On();
-			DRV_Motor_Stop();
+			DRV_Motor_Stop(NULL);
 			DRV_Edge_Correction();
 			LED4_Off();
 		}

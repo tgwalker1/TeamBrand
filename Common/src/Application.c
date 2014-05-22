@@ -33,7 +33,7 @@
 #include "RTOSTRC1.h"
 #endif
 #if PL_HAS_ACCEL
-  ACCEL_Init();
+#include "Accel.h"
 #endif
 #if PL_HAS_ULTRASONIC
 #include "Ultrasonic.h"
@@ -120,7 +120,7 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 
 	(void) pvParameters; /* parameter not used */
 #if PL_HAS_ACCEL
-  ACCEL_LowLevelInit()!=ERR_OK; /* always enable accelerometer */
+  ACCEL_LowLevelInit();
 #endif
 	for (;;) {
 		EVNT_HandleEvent(APP_EvntHandler);
