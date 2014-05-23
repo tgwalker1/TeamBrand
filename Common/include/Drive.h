@@ -22,6 +22,9 @@
  */
 
 void DRV_Motor_Stop(void *dataPtr);
+void DRV_Motor_Stop_Stop(void);
+void DRV_Edge_CircleCorrection(void *dataPtr);
+void DRV_Edge_Correction(void);
 void DRV_Drive_Forward(int32_t speed);
 void DRV_Drive_Forward_Tick(int32_t speed, word ticks);
 void DRV_Drive_Circle(int32_t speed);

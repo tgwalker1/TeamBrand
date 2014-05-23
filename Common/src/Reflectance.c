@@ -193,7 +193,7 @@ uint16_t REF_GetLinePos(void)
 	uint16_t Denumerator = 0;
 	int i;
 	for(i=0;i<=REF_NOF_SENSORS; i++){
-		Numerator += SensorCalibrated[i]*1000;
+		Numerator += (SensorCalibrated[i]*1000*(i+1));
 		Denumerator += SensorCalibrated[i];
 	}
 	uint16_t value = (uint16_t)(Numerator/Denumerator);

@@ -133,10 +133,7 @@ static portTASK_FUNCTION(MainTask, pvParameters) {
 		if (msCnt > 280) {
 			#if PL_HAS_ULTRASONIC
 				(void)US_Measure_us(); /* Measure distance */
-				if(US_GetLastCentimeterValue()<DISTANCE_MIN && STR_GetState()!=STR_IDLE)
-						{
-							STR_SetState(STR_KAMIKAZE);
-						}
+
 			#endif
 			msCnt = 0;
 			

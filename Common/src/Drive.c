@@ -39,16 +39,35 @@ void DRV_Motor_Stop(void *dataPtr)
 {
 	DRV_SpeedLeft = 0;
 	DRV_SpeedRight = 0;
+	DRV_Drive_Forward(SPEED_NORM);
+	STR_SetState(STR_SEEK);
 }
+
+void DRV_Motor_Stop_Stop(void)
+{
+	DRV_SpeedLeft = 0;
+	DRV_SpeedRight = 0;
+}
+
+void DRV_Edge_CircleCorrection(void *dataPtr)
+{
+	DRV_Motor_Stop_Stop();
+	DRV_SpeedLeft = 60;
+	DRV_SpeedRight = -60;
+	TRG_SetTrigger(TRG_MOT_STOP,1000/TMR_TICK_MS,DRV_Motor_Stop,NULL);
+	STR_SetState(STR_DRIVING);
+}
+
 void DRV_Edge_Correction(void)
 {
-	uint16_t value;
+//	uint16_t value;
 //	value = REF_GetLinePos();
 	
-	DRV_Drive_Forward(-SPEED_NORM);
-	TRG_SetTrigger(TRG_MOT_STOP,200/TMR_TICK_MS,DRV_Motor_Stop,NULL);
-	DRV_Drive_Circle(-SPEED_NORM);
-	TRG_SetTrigger(TRG_MOT_STOP,200/TMR_TICK_MS,DRV_Motor_Stop,NULL);
+	DRV_SpeedLeft = -SPEED_NORM;
+	DRV_SpeedRight = -SPEED_NORM;
+	TRG_SetTrigger(TRG_MOT_STOP,1000/TMR_TICK_MS,DRV_Edge_CircleCorrection,NULL);
+	
+
 //	if(value<2000)
 //	{
 //		BUZ_Beep(300,500);
@@ -67,7 +86,7 @@ void DRV_Edge_Correction(void)
 //		DRV_Drive_Circle_Tick(-SPEED_NORM,48);
 //
 //	}
-	DRV_Drive_Forward(SPEED_NORM);
+	STR_SetState(STR_DRIVING);
 }
 void DRV_Drive_Forward(int32_t speed)
 {
@@ -76,61 +95,61 @@ void DRV_Drive_Forward(int32_t speed)
 	
 }
 
-void DRV_Drive_Forward_Tick(int32_t speed, word ticks)
-{
-	word ticks_Start;
-	ticks_Start = Q4CLeft_GetPos()+20000;
-	DRV_SpeedLeft = speed;
-	DRV_SpeedRight = speed;
-	if(DRV_SpeedLeft>0)
-	{
-		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
-		{
-			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
-		}
-		DRV_Motor_Stop(NULL);
-	}
-	else
-	{
-		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
-		{
-			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
-		}
-		DRV_Motor_Stop(NULL);
-	}
-
-
-}
-void DRV_Drive_Circle(int32_t speed)
-{
-	DRV_SpeedLeft = -speed;
-	DRV_SpeedRight = speed;
-
-}
-
-void DRV_Drive_Circle_Tick(int32_t speed, word ticks)
-{
-	DRV_SpeedLeft = speed;
-	DRV_SpeedRight = -speed;
-	word ticks_Start;
-	ticks_Start = Q4CLeft_GetPos()+20000;
-	if(DRV_SpeedLeft>0)
-	{
-		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
-		{
-			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
-		}
-		DRV_Motor_Stop(NULL);
-	}
-	else
-	{
-		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
-		{
-			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
-		}
-		DRV_Motor_Stop(NULL);
-	}
-}
+//void DRV_Drive_Forward_Tick(int32_t speed, word ticks)
+//{
+//	word ticks_Start;
+//	ticks_Start = Q4CLeft_GetPos()+20000;
+//	DRV_SpeedLeft = speed;
+//	DRV_SpeedRight = speed;
+//	if(DRV_SpeedLeft>0)
+//	{
+//		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
+//		{
+//			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
+//		}
+//		DRV_Motor_Stop_Stop();
+//	}
+//	else
+//	{
+//		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
+//		{
+//			FRTOS1_vTaskDelay(100/portTICK_RATE_MS);
+//		}
+//		DRV_Motor_Stop_Stop();
+//	}
+//
+//
+//}
+//void DRV_Drive_Circle(int32_t speed)
+//{
+//	DRV_SpeedLeft = -speed;
+//	DRV_SpeedRight = speed;
+//
+//}
+//
+//void DRV_Drive_Circle_Tick(int32_t speed, word ticks)
+//{
+//	DRV_SpeedLeft = speed;
+//	DRV_SpeedRight = -speed;
+//	word ticks_Start;
+//	ticks_Start = Q4CLeft_GetPos()+20000;
+//	if(DRV_SpeedLeft>0)
+//	{
+//		while(((Q4CLeft_GetPos()+20000) < (ticks_Start+ticks)))
+//		{
+//			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+//		}
+//		DRV_Motor_Stop(NULL);
+//	}
+//	else
+//	{
+//		while(((Q4CLeft_GetPos()+20000) > (ticks_Start-ticks)))
+//		{
+//			FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+//		}
+//		DRV_Motor_Stop(NULL);
+//	}
+//}
 
 #if PL_HAS_SHELL
 static void DRV_PrintStatus(const CLS1_StdIOType *io) {

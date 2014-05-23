@@ -12,8 +12,8 @@
 #include "Platform.h"
 
 #define WHITEEDGE 10 
-#define SPEED_MAX 80
-#define	SPEED_NORM 60
+#define SPEED_MAX 200
+#define	SPEED_NORM 120
 
 #define	DISTANCE_MIN 30
 
@@ -22,8 +22,9 @@ typedef enum
 	STR_IDLE,
 	STR_WAIT,
 	STR_SEEK,
+	STR_ONEDGE,
 	STR_KAMIKAZE,
-	STR_SHUTDOWN //Wenner auf dem Rücken liegt
+	STR_DRIVING 
 }STR_States_t;
 
 void STR_Start(void);

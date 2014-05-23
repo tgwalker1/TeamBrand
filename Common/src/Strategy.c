@@ -21,6 +21,9 @@
 #if PL_HAS_BUZZER
 #include "Buzzer.h"
 #endif
+#if PL_HAS_DRIVE
+#include "Drive.h"
+#endif
 
 STR_States_t state;
 
@@ -43,6 +46,7 @@ void STR_StateMachine() {
 #if PL_HAS_DRIVE
 			DRV_Drive_Forward(0);
 			BUZ_Beep(800, 1000);
+			state = STR_IDLE;
 #endif
 		}
 	}
@@ -63,24 +67,35 @@ void STR_StateMachine() {
 		break;
 	case STR_SEEK:
 		LED3_On();
-		if (REF_CheckOnEdge()) {
-			LED4_On();
-			DRV_Motor_Stop(NULL);
-			DRV_Edge_Correction();
-			LED4_Off();
+		if(US_GetLastCentimeterValue()<DISTANCE_MIN)
+		{
+			state = STR_KAMIKAZE;
+		}
+		if (REF_CheckOnEdge()) 
+		{
+			DRV_Motor_Stop_Stop();
+			state = STR_ONEDGE;
 		}
 		LED3_Off();
 		break;
+	case STR_ONEDGE:
+		LED4_On();
+		DRV_Edge_Correction();
+		LED4_Off();
+		break;
+		
 	case STR_KAMIKAZE:
 		LED2_On();
+		DRV_Drive_Forward(SPEED_MAX);
 		while (US_GetLastCentimeterValue() < DISTANCE_MIN) {
-			DRV_Drive_Forward(SPEED_MAX);
+			
 		}
 		DRV_Drive_Forward(SPEED_NORM);
 		state = STR_SEEK;
 		LED2_Off();
 		break;
-	case STR_SHUTDOWN:
+	case STR_DRIVING:
+		LED4_Neg();
 		break;
 	}
 
