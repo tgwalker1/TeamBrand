@@ -34,7 +34,7 @@ void STR_SetState(STR_States_t nextState) {
 	state = nextState;
 }
 void STR_StateMachine() {
-
+#if PL_HAS_ACCEL
 	int16_t x, y, z;
 	bool isEnabled;
 	uint8_t res;
@@ -50,6 +50,7 @@ void STR_StateMachine() {
 #endif
 		}
 	}
+#endif
 
 	switch (state) {
 	case STR_IDLE:
@@ -95,7 +96,13 @@ void STR_StateMachine() {
 		LED2_Off();
 		break;
 	case STR_DRIVING:
-		LED4_Neg();
+		break;
+	case STR_OBSERVING:
+		if(US_GetLastCentimeterValue()<DISTANCE_MIN)
+		{
+			DRV_Motor_Stop_Stop();
+			state = STR_KAMIKAZE;
+		}
 		break;
 	}
 

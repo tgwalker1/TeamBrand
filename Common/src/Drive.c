@@ -52,10 +52,10 @@ void DRV_Motor_Stop_Stop(void)
 void DRV_Edge_CircleCorrection(void *dataPtr)
 {
 	DRV_Motor_Stop_Stop();
-	DRV_SpeedLeft = 60;
-	DRV_SpeedRight = -60;
-	TRG_SetTrigger(TRG_MOT_STOP,1000/TMR_TICK_MS,DRV_Motor_Stop,NULL);
-	STR_SetState(STR_DRIVING);
+	DRV_SpeedLeft = 40;
+	DRV_SpeedRight = -40;
+	TRG_SetTrigger(TRG_MOT_STOP,2000/TMR_TICK_MS,DRV_Motor_Stop,NULL);
+	STR_SetState(STR_OBSERVING);
 }
 
 void DRV_Edge_Correction(void)
@@ -65,7 +65,7 @@ void DRV_Edge_Correction(void)
 	
 	DRV_SpeedLeft = -SPEED_NORM;
 	DRV_SpeedRight = -SPEED_NORM;
-	TRG_SetTrigger(TRG_MOT_STOP,1000/TMR_TICK_MS,DRV_Edge_CircleCorrection,NULL);
+	TRG_SetTrigger(TRG_MOT_STOP,100/TMR_TICK_MS,DRV_Edge_CircleCorrection,NULL);
 	
 
 //	if(value<2000)

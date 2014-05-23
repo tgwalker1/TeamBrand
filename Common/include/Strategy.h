@@ -12,10 +12,10 @@
 #include "Platform.h"
 
 #define WHITEEDGE 10 
-#define SPEED_MAX 200
+#define SPEED_MAX 300
 #define	SPEED_NORM 120
 
-#define	DISTANCE_MIN 30
+#define	DISTANCE_MIN 50
 
 typedef enum
 {
@@ -24,7 +24,8 @@ typedef enum
 	STR_SEEK,
 	STR_ONEDGE,
 	STR_KAMIKAZE,
-	STR_DRIVING 
+	STR_DRIVING,
+	STR_OBSERVING
 }STR_States_t;
 
 void STR_Start(void);
