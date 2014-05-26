@@ -58,10 +58,14 @@ void STR_StateMachine() {
 	case STR_WAIT:
 		LED2_On();
 		BUZ_Beep(400, 500);
-		WAIT1_Waitms(500);
+		WAIT1_Waitms(1000);
 		BUZ_Beep(400, 500);
-		WAIT1_Waitms(500);
-		BUZ_Beep(600, 500);
+		WAIT1_Waitms(1000);
+		BUZ_Beep(400, 500);
+		WAIT1_Waitms(1000);
+		BUZ_Beep(400, 500);
+		WAIT1_Waitms(1000);
+		BUZ_Beep(800, 500);
 		DRV_Drive_Forward(SPEED_NORM);
 		state = STR_SEEK;
 		LED2_Off();

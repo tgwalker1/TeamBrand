@@ -30,7 +30,7 @@ static portTASK_FUNCTION(DriveTask, pvParameters) {
     TACHO_CalcSpeed();
     if (DRV_SpeedOn) {
       PID_Speed(TACHO_GetSpeed(TRUE), DRV_SpeedLeft, TRUE); /* left */
-      PID_Speed(TACHO_GetSpeed(FALSE), DRV_SpeedRight, FALSE); /* right */
+      PID_Speed(TACHO_GetSpeed(FALSE), -DRV_SpeedRight, FALSE); /* right */
     }
     FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
   } /* for */

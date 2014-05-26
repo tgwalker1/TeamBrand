@@ -13,7 +13,7 @@
 
 #define WHITEEDGE 10 
 #define SPEED_MAX 300
-#define	SPEED_NORM 120
+#define	SPEED_NORM 90
 
 #define	DISTANCE_MIN 50
 
